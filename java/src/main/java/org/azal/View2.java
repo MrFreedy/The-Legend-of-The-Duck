@@ -161,16 +161,20 @@ public class View2 extends JPanel implements KeyListener, MouseListener {
 
         tree.add(points.remove(0));
 
+        Point a, b;
+        double minDistance;
+        double dx, dy, distance;
         while (!points.isEmpty()) {
-            Point a = null;
-            Point b = null;
-            double minDistance = Double.MAX_VALUE;
+            a = null;
+            b = null;
+
+            minDistance = Double.MAX_VALUE;
 
             for (Point p1 : tree) {
                 for (Point p2 : points) {
-                    double dx = p2.x - p1.x;
-                    double dy = p2.y - p1.y;
-                    double distance = Math.sqrt(dx * dx + dy * dy);
+                    dx = p2.x - p1.x;
+                    dy = p2.y - p1.y;
+                    distance = Math.sqrt(dx * dx + dy * dy);
                     if (distance < minDistance) {
                         minDistance = distance;
                         a = p1;
