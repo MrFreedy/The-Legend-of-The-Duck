@@ -1,22 +1,24 @@
 package org.azal;
 
+import org.azal.controller.MenuController;
 import org.azal.controller.PrimController;
+import org.azal.model.MenuModel;
 import org.azal.model.PrimModel;
+import org.azal.view.MenuView;
 import org.azal.view.PrimView;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class Main {
     public static void main(String[] args) {
-        PrimModel model = new PrimModel();
-        PrimView view = new PrimView(model);
-        PrimController controller = new PrimController(model, view);
+        MenuModel model = new MenuModel();
+        MenuView view = new MenuView(model);
+        MenuController controller = new MenuController(model, view);
         JFrame frame = new JFrame();
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setUndecorated(true);
-        frame.setVisible(true);
         frame.add(view);
-        view.requestFocus();
+        frame.setSize(800, 600);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
     }
 }
