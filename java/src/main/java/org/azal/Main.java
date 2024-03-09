@@ -1,14 +1,10 @@
 package org.azal;
 
 import org.azal.controller.MenuController;
-import org.azal.controller.PrimController;
 import org.azal.model.MenuModel;
-import org.azal.model.PrimModel;
 import org.azal.view.MenuView;
-import org.azal.view.PrimView;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class Main {
     public static void main(String[] args) {

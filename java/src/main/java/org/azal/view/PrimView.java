@@ -4,7 +4,6 @@ import org.azal.model.PrimModel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyListener;
 
 public class PrimView extends JPanel {
 

@@ -1,11 +1,9 @@
 package org.azal.controller;
 
-import org.azal.Main;
 import org.azal.model.PrimModel;
 import org.azal.view.PrimView;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class PrimController{
     private PrimModel model;
