@@ -1,7 +1,9 @@
 package org.azal.controller;
 
+import org.azal.model.BSPModel;
 import org.azal.model.MenuModel;
 import org.azal.model.PrimModel;
+import org.azal.view.BSPView;
 import org.azal.view.MenuView;
 import org.azal.view.PrimView;
 
@@ -49,6 +51,17 @@ public class MenuController {
                 frame.add(viewPrim);
                 viewPrim.requestFocus();
                 PrimController controller = new PrimController(modelPrim, viewPrim,frame);
+            }else if (Objects.equals(comboBox.getSelectedItem(),"Algorithme BSP")){
+                BSPModel modelBSP = new BSPModel();
+                BSPView viewBSP = new BSPView(modelBSP);
+                JFrame frame = new JFrame();
+                frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.setUndecorated(true);
+                frame.setVisible(true);
+                frame.add(viewBSP);
+                viewBSP.requestFocus();
+                BSPController controller = new BSPController(modelBSP,viewBSP,frame);
             }
         });
 
