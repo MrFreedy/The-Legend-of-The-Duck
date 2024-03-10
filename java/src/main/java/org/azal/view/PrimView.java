@@ -4,7 +4,6 @@ import org.azal.model.PrimModel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyListener;
 
 public class PrimView extends JPanel {
 
@@ -16,27 +15,6 @@ public class PrimView extends JPanel {
         super();
         this.model = model;
         setBackground(color);
-
-        KeyListener keyListener = new KeyListener() {
-            @Override
-            public void keyTyped(java.awt.event.KeyEvent e) {
-            }
-
-            @Override
-            public void keyPressed(java.awt.event.KeyEvent e) {
-                if(e.getKeyCode() == java.awt.event.KeyEvent.VK_ESCAPE) {
-                    System.exit(0);
-                }else{
-                    repaint();
-                }
-            }
-
-            @Override
-            public void keyReleased(java.awt.event.KeyEvent e) {
-            }
-        };
-
-        addKeyListener(keyListener);
     }
 
     @Override
