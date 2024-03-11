@@ -1,0 +1,647 @@
+<html>
+    <head>
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Checkstyle Violations</title>
+        <style type="text/css">
+                    body {
+                        background-color: #fff;
+                        color: #02303A;
+                    }
+
+                    a {
+                        color: #1DA2BD;
+                    }
+                    a.link {
+                        color: #02303A;
+                    }
+
+                    p {
+                        font-size: 1rem;
+                    }
+
+                    h1 a[name] {
+                        margin: 0;
+                        padding: 0;
+                    }
+
+                    tr:nth-child(even) {
+                        background: white;
+                    }
+
+                    th {
+                        font-weight:bold;
+                    }
+                    tr {
+                        background: #efefef;
+                    }
+                    table th, td, tr {
+                        font-size:100%;
+                        border: none;
+                        text-align: left;
+                        vertical-align: top;
+                    }
+                </style>
+    </head>
+    <body>
+        <p>
+            <a name="top">
+                <h1>Checkstyle Results</h1>
+            </a>
+        </p>
+        <hr align="left" width="95%" size="1">
+        <h2>Summary</h2>
+        <table class="summary" width="95%">
+            <tr>
+                <th>Total files checked</th><th>Total violations</th><th>Files with violations</th>
+            </tr>
+            <tr>
+                <td>9</td><td>141</td><td>9</td>
+            </tr>
+        </table>
+        <hr align="left" width="95%" size="1">
+        <div class="violations">
+            <h2>Violations</h2>
+            <p>
+                <table class="filelist" width="95%">
+                    <tr>
+                        <th>File</th><th>Total violations</th>
+                    </tr>
+                    <tr>
+                        <td><a href="#N65608">C:\Users\aamiri\IdeaProjects\The-Legend-of-The-Duck\java\src\main\java\org\azal\bsp\Dungeon.java</a></td><td>54</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#N66244">C:\Users\aamiri\IdeaProjects\The-Legend-of-The-Duck\java\src\main\java\org\azal\model\PrimModel.java</a></td><td>27</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#N65982">C:\Users\aamiri\IdeaProjects\The-Legend-of-The-Duck\java\src\main\java\org\azal\controller\MenuController.java</a></td><td>18</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#N66108">C:\Users\aamiri\IdeaProjects\The-Legend-of-The-Duck\java\src\main\java\org\azal\controller\PrimController.java</a></td><td>11</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#N65542">C:\Users\aamiri\IdeaProjects\The-Legend-of-The-Duck\java\src\main\java\org\azal\bsp\BSP.java</a></td><td>9</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#N66485">C:\Users\aamiri\IdeaProjects\The-Legend-of-The-Duck\java\src\main\java\org\azal\view\PrimView.java</a></td><td>8</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#N66433">C:\Users\aamiri\IdeaProjects\The-Legend-of-The-Duck\java\src\main\java\org\azal\view\MenuView.java</a></td><td>7</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#N66189">C:\Users\aamiri\IdeaProjects\The-Legend-of-The-Duck\java\src\main\java\org\azal\Main.java</a></td><td>6</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#N66234">C:\Users\aamiri\IdeaProjects\The-Legend-of-The-Duck\java\src\main\java\org\azal\model\MenuModel.java</a></td><td>1</td>
+                    </tr>
+                </table>
+                <p></p>
+                
+                <div class="file-violation">
+                    <h3>
+                        <a class="link" name="N65542">C:\Users\aamiri\IdeaProjects\The-Legend-of-The-Duck\java\src\main\java\org\azal\bsp\BSP.java</a>
+                    </h3>
+                    <table class="violationlist" width="95%">
+                        <tr>
+                            <th>Severity</th><th>Description</th><th>Line Number</th>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Le fichier package-info.java est manquant.</td><td>1</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Commentaire Javadoc manquant.</td><td>10</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Commentaire Javadoc manquant.</td><td>12</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Le param&egrave;tre e devrait &ecirc;tre final.</td><td>16</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Commentaire Javadoc manquant.</td><td>26</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Le param&egrave;tre args devrait &ecirc;tre final.</td><td>26</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Commentaire Javadoc manquant.</td><td>30</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>La classe 'BSP' semble &ecirc;tre con&ccedil;ue pour extension (peut &ecirc;tre h&eacute;rit&eacute;e), mais la m&eacute;thode'replaceDungeon' n'a pas de Javadoc qui explique comment le faire en toute s&eacute;curit&eacute;. Si la classe n'est pas con&ccedil;ue pour extension, envisagez de rendre la classe 'BSP' finale ou de rendre la m&eacute;thode 'replaceDungeon' static/final/abstract/empty, d'ajouter les annotations permises pour la m&eacute;thode.</td><td>30</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>'dungeon' masque un attribut.</td><td>31</td>
+                        </tr>
+                    </table>
+                    <p></p>
+                    <a href="#top">Back to top</a>
+                    <p></p>
+                </div>
+                <div class="file-violation">
+                    <h3>
+                        <a class="link" name="N65608">C:\Users\aamiri\IdeaProjects\The-Legend-of-The-Duck\java\src\main\java\org\azal\bsp\Dungeon.java</a>
+                    </h3>
+                    <table class="violationlist" width="95%">
+                        <tr>
+                            <th>Severity</th><th>Description</th><th>Line Number</th>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Chaque d&eacute;claration de variable doit faire l'objet d'une instruction &agrave; part.</td><td>16</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Commentaire Javadoc manquant.</td><td>16</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Commentaire Javadoc manquant.</td><td>17</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Commentaire Javadoc manquant.</td><td>18</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Commentaire Javadoc manquant.</td><td>19</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Commentaire Javadoc manquant.</td><td>20</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Commentaire Javadoc manquant.</td><td>21</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Commentaire Javadoc manquant.</td><td>23</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Commentaire Javadoc manquant.</td><td>24</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Mot-clef 'public' redondant.</td><td>28</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>'60' devrait &ecirc;tre d&eacute;fini comme une constante.</td><td>31</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>'60' devrait &ecirc;tre d&eacute;fini comme une constante.</td><td>31</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>'120' devrait &ecirc;tre d&eacute;fini comme une constante.</td><td>31</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>'120' devrait &ecirc;tre d&eacute;fini comme une constante.</td><td>31</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>'5' devrait &ecirc;tre d&eacute;fini comme une constante.</td><td>32</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>La ligne exc&egrave;de 80 caract&egrave;res (trouv&eacute; 89).</td><td>36</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Le param&egrave;tre partitions devrait &ecirc;tre final.</td><td>42</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>'partitions' masque un attribut.</td><td>42</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Le param&egrave;tre maxRooms devrait &ecirc;tre final.</td><td>42</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>'100' devrait &ecirc;tre d&eacute;fini comme une constante.</td><td>47</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>'80' devrait &ecirc;tre d&eacute;fini comme une constante.</td><td>48</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>'80' devrait &ecirc;tre d&eacute;fini comme une constante.</td><td>48</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>La ligne exc&egrave;de 80 caract&egrave;res (trouv&eacute; 108).</td><td>50</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>La ligne exc&egrave;de 80 caract&egrave;res (trouv&eacute; 134).</td><td>53</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>'100' devrait &ecirc;tre d&eacute;fini comme une constante.</td><td>59</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>'80' devrait &ecirc;tre d&eacute;fini comme une constante.</td><td>60</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>'80' devrait &ecirc;tre d&eacute;fini comme une constante.</td><td>60</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>La ligne exc&egrave;de 80 caract&egrave;res (trouv&eacute; 107).</td><td>62</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>La ligne exc&egrave;de 80 caract&egrave;res (trouv&eacute; 134).</td><td>65</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Le param&egrave;tre partitions devrait &ecirc;tre final.</td><td>84</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>'partitions' masque un attribut.</td><td>84</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>La ligne exc&egrave;de 80 caract&egrave;res (trouv&eacute; 82).</td><td>87</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>L'instruction 'if' devrait utiliser des accolades ('{' et '}').</td><td>87</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>'40' devrait &ecirc;tre d&eacute;fini comme une constante.</td><td>87</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>'40' devrait &ecirc;tre d&eacute;fini comme une constante.</td><td>87</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>La ligne exc&egrave;de 80 caract&egrave;res (trouv&eacute; 131).</td><td>88</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>'10' devrait &ecirc;tre d&eacute;fini comme une constante.</td><td>88</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>'10' devrait &ecirc;tre d&eacute;fini comme une constante.</td><td>88</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>'20' devrait &ecirc;tre d&eacute;fini comme une constante.</td><td>88</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>'20' devrait &ecirc;tre d&eacute;fini comme une constante.</td><td>88</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Le param&egrave;tre partitions devrait &ecirc;tre final.</td><td>93</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>'partitions' masque un attribut.</td><td>93</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>'4' devrait &ecirc;tre d&eacute;fini comme une constante.</td><td>98</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>'5' devrait &ecirc;tre d&eacute;fini comme une constante.</td><td>102</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>'5' devrait &ecirc;tre d&eacute;fini comme une constante.</td><td>107</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>'5' devrait &ecirc;tre d&eacute;fini comme une constante.</td><td>114</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>'5' devrait &ecirc;tre d&eacute;fini comme une constante.</td><td>119</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Le param&egrave;tre g devrait &ecirc;tre final.</td><td>133</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>'10' devrait &ecirc;tre d&eacute;fini comme une constante.</td><td>140</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>La ligne exc&egrave;de 80 caract&egrave;res (trouv&eacute; 81).</td><td>141</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>'20' devrait &ecirc;tre d&eacute;fini comme une constante.</td><td>155</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>'20' devrait &ecirc;tre d&eacute;fini comme une constante.</td><td>155</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Le param&egrave;tre min devrait &ecirc;tre final.</td><td>158</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Le param&egrave;tre max devrait &ecirc;tre final.</td><td>158</td>
+                        </tr>
+                    </table>
+                    <p></p>
+                    <a href="#top">Back to top</a>
+                    <p></p>
+                </div>
+                <div class="file-violation">
+                    <h3>
+                        <a class="link" name="N65982">C:\Users\aamiri\IdeaProjects\The-Legend-of-The-Duck\java\src\main\java\org\azal\controller\MenuController.java</a>
+                    </h3>
+                    <table class="violationlist" width="95%">
+                        <tr>
+                            <th>Severity</th><th>Description</th><th>Line Number</th>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Le fichier package-info.java est manquant.</td><td>1</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Commentaire Javadoc manquant.</td><td>18</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Commentaire Javadoc manquant.</td><td>19</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Commentaire Javadoc manquant.</td><td>20</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>La variable 'comboSize' devrait &ecirc;tre priv&eacute;e et avoir des accesseurs.</td><td>20</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>'200' devrait &ecirc;tre d&eacute;fini comme une constante.</td><td>20</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>'30' devrait &ecirc;tre d&eacute;fini comme une constante.</td><td>20</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Commentaire Javadoc manquant.</td><td>22</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Le param&egrave;tre model devrait &ecirc;tre final.</td><td>22</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>'model' masque un attribut.</td><td>22</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Le param&egrave;tre view devrait &ecirc;tre final.</td><td>22</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>'view' masque un attribut.</td><td>22</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>La ligne exc&egrave;de 80 caract&egrave;res (trouv&eacute; 100).</td><td>31</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>La ligne exc&egrave;de 80 caract&egrave;res (trouv&eacute; 81).</td><td>46</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Il manque une espace apr&egrave;s 'if'.</td><td>46</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Il manque une espace avant '{'.</td><td>46</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>La ligne exc&egrave;de 80 caract&egrave;res (trouv&eacute; 90).</td><td>56</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Il manque une espace apr&egrave;s ','.</td><td>56</td>
+                        </tr>
+                    </table>
+                    <p></p>
+                    <a href="#top">Back to top</a>
+                    <p></p>
+                </div>
+                <div class="file-violation">
+                    <h3>
+                        <a class="link" name="N66108">C:\Users\aamiri\IdeaProjects\The-Legend-of-The-Duck\java\src\main\java\org\azal\controller\PrimController.java</a>
+                    </h3>
+                    <table class="violationlist" width="95%">
+                        <tr>
+                            <th>Severity</th><th>Description</th><th>Line Number</th>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Il manque une espace avant '{'.</td><td>8</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Commentaire Javadoc manquant.</td><td>9</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Commentaire Javadoc manquant.</td><td>10</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Commentaire Javadoc manquant.</td><td>11</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Commentaire Javadoc manquant.</td><td>13</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Le param&egrave;tre model devrait &ecirc;tre final.</td><td>13</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>'model' masque un attribut.</td><td>13</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Le param&egrave;tre view devrait &ecirc;tre final.</td><td>13</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>'view' masque un attribut.</td><td>13</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Le param&egrave;tre frame devrait &ecirc;tre final.</td><td>13</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>'frame' masque un attribut.</td><td>13</td>
+                        </tr>
+                    </table>
+                    <p></p>
+                    <a href="#top">Back to top</a>
+                    <p></p>
+                </div>
+                <div class="file-violation">
+                    <h3>
+                        <a class="link" name="N66189">C:\Users\aamiri\IdeaProjects\The-Legend-of-The-Duck\java\src\main\java\org\azal\Main.java</a>
+                    </h3>
+                    <table class="violationlist" width="95%">
+                        <tr>
+                            <th>Severity</th><th>Description</th><th>Line Number</th>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Le fichier package-info.java est manquant.</td><td>1</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Les classes utilitaires ne doivent pas avoir de constructeur par d&eacute;faut ou public.</td><td>9</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Commentaire Javadoc manquant.</td><td>10</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Le param&egrave;tre args devrait &ecirc;tre final.</td><td>10</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>'800' devrait &ecirc;tre d&eacute;fini comme une constante.</td><td>16</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>'600' devrait &ecirc;tre d&eacute;fini comme une constante.</td><td>16</td>
+                        </tr>
+                    </table>
+                    <p></p>
+                    <a href="#top">Back to top</a>
+                    <p></p>
+                </div>
+                <div class="file-violation">
+                    <h3>
+                        <a class="link" name="N66234">C:\Users\aamiri\IdeaProjects\The-Legend-of-The-Duck\java\src\main\java\org\azal\model\MenuModel.java</a>
+                    </h3>
+                    <table class="violationlist" width="95%">
+                        <tr>
+                            <th>Severity</th><th>Description</th><th>Line Number</th>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Le fichier package-info.java est manquant.</td><td>1</td>
+                        </tr>
+                    </table>
+                    <p></p>
+                    <a href="#top">Back to top</a>
+                    <p></p>
+                </div>
+                <div class="file-violation">
+                    <h3>
+                        <a class="link" name="N66244">C:\Users\aamiri\IdeaProjects\The-Legend-of-The-Duck\java\src\main\java\org\azal\model\PrimModel.java</a>
+                    </h3>
+                    <table class="violationlist" width="95%">
+                        <tr>
+                            <th>Severity</th><th>Description</th><th>Line Number</th>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Commentaire Javadoc manquant.</td><td>18</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>La variable 'image' devrait &ecirc;tre priv&eacute;e et avoir des accesseurs.</td><td>18</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Commentaire Javadoc manquant.</td><td>21</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Commentaire Javadoc manquant.</td><td>22</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Commentaire Javadoc manquant.</td><td>23</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Commentaire Javadoc manquant.</td><td>24</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Commentaire Javadoc manquant.</td><td>25</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Commentaire Javadoc manquant.</td><td>27</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Commentaire Javadoc manquant.</td><td>28</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Commentaire Javadoc manquant.</td><td>30</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Commentaire Javadoc manquant.</td><td>32</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Commentaire Javadoc manquant.</td><td>34</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>La ligne exc&egrave;de 80 caract&egrave;res (trouv&eacute; 90).</td><td>37</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>La ligne exc&egrave;de 80 caract&egrave;res (trouv&eacute; 88).</td><td>38</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>La ligne exc&egrave;de 80 caract&egrave;res (trouv&eacute; 88).</td><td>41</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>La ligne exc&egrave;de 80 caract&egrave;res (trouv&eacute; 86).</td><td>43</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Commentaire Javadoc manquant.</td><td>49</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>La classe 'PrimModel' semble &ecirc;tre con&ccedil;ue pour extension (peut &ecirc;tre h&eacute;rit&eacute;e), mais la m&eacute;thode'draw' n'a pas de Javadoc qui explique comment le faire en toute s&eacute;curit&eacute;. Si la classe n'est pas con&ccedil;ue pour extension, envisagez de rendre la classe 'PrimModel' finale ou de rendre la m&eacute;thode 'draw' static/final/abstract/empty, d'ajouter les annotations permises pour la m&eacute;thode.</td><td>49</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Le param&egrave;tre g devrait &ecirc;tre final.</td><td>49</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>'10' devrait &ecirc;tre d&eacute;fini comme une constante.</td><td>64</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>'20' devrait &ecirc;tre d&eacute;fini comme une constante.</td><td>64</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>'10' devrait &ecirc;tre d&eacute;fini comme une constante.</td><td>65</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>'20' devrait &ecirc;tre d&eacute;fini comme une constante.</td><td>65</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Chaque d&eacute;claration de variable doit faire l'objet d'une instruction &agrave; part.</td><td>118</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Chaque d&eacute;claration de variable doit faire l'objet d'une instruction &agrave; part.</td><td>120</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Il y a une espace de trop avant ','.</td><td>159</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Il y a une espace de trop avant ','.</td><td>160</td>
+                        </tr>
+                    </table>
+                    <p></p>
+                    <a href="#top">Back to top</a>
+                    <p></p>
+                </div>
+                <div class="file-violation">
+                    <h3>
+                        <a class="link" name="N66433">C:\Users\aamiri\IdeaProjects\The-Legend-of-The-Duck\java\src\main\java\org\azal\view\MenuView.java</a>
+                    </h3>
+                    <table class="violationlist" width="95%">
+                        <tr>
+                            <th>Severity</th><th>Description</th><th>Line Number</th>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Le fichier package-info.java est manquant.</td><td>1</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Commentaire Javadoc manquant.</td><td>8</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Commentaire Javadoc manquant.</td><td>9</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Le param&egrave;tre model devrait &ecirc;tre final.</td><td>9</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>'model' masque un attribut.</td><td>9</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Il manque une espace apr&egrave;s '='.</td><td>11</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Il manque une espace avant '='.</td><td>11</td>
+                        </tr>
+                    </table>
+                    <p></p>
+                    <a href="#top">Back to top</a>
+                    <p></p>
+                </div>
+                <div class="file-violation">
+                    <h3>
+                        <a class="link" name="N66485">C:\Users\aamiri\IdeaProjects\The-Legend-of-The-Duck\java\src\main\java\org\azal\view\PrimView.java</a>
+                    </h3>
+                    <table class="violationlist" width="95%">
+                        <tr>
+                            <th>Severity</th><th>Description</th><th>Line Number</th>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Commentaire Javadoc manquant.</td><td>11</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Commentaire Javadoc manquant.</td><td>13</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Commentaire Javadoc manquant.</td><td>15</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Il y a une espace de trop avant '('.</td><td>15</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Le param&egrave;tre model devrait &ecirc;tre final.</td><td>15</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>'model' masque un attribut.</td><td>15</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>La classe 'PrimView' semble &ecirc;tre con&ccedil;ue pour extension (peut &ecirc;tre h&eacute;rit&eacute;e), mais la m&eacute;thode'paintComponent' n'a pas de Javadoc qui explique comment le faire en toute s&eacute;curit&eacute;. Si la classe n'est pas con&ccedil;ue pour extension, envisagez de rendre la classe 'PrimView' finale ou de rendre la m&eacute;thode 'paintComponent' static/final/abstract/empty, d'ajouter les annotations permises pour la m&eacute;thode.</td><td>21</td>
+                        </tr>
+                        <tr>
+                            <td>error</td><td>Le param&egrave;tre g devrait &ecirc;tre final.</td><td>22</td>
+                        </tr>
+                    </table>
+                    <p></p>
+                    <a href="#top">Back to top</a>
+                    <p></p>
+                </div>
+                <p></p>
+            </p>
+        </div>
+        <hr align="left" width="95%" size="1">
+        <p>
+            Generated by <a href="https://gradle.org">Gradle 8.4</a> with <a href="https://checkstyle.sourceforge.io/">Checkstyle 8.45</a>.
+        </p>
+    </body>
+</html>

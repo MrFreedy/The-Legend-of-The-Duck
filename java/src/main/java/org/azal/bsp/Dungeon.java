@@ -1,8 +1,13 @@
 package org.azal.bsp;
 
-
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JPanel;
+import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Point;
+import java.awt.Graphics2D;
+import java.awt.BasicStroke;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

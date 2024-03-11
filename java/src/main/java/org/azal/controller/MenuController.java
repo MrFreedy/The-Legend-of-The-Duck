@@ -4,9 +4,14 @@ import org.azal.model.MenuModel;
 import org.azal.model.PrimModel;
 import org.azal.view.MenuView;
 import org.azal.view.PrimView;
-
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.BoxLayout;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.util.Objects;
 
 public class MenuController {

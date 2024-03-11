@@ -1,9 +1,11 @@
 package org.azal.bsp;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JFrame;
+
+import java.awt.BorderLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+
 public class BSP extends JFrame {
     private Dungeon dungeon;
 

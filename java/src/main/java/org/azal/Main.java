@@ -4,7 +4,7 @@ import org.azal.controller.MenuController;
 import org.azal.model.MenuModel;
 import org.azal.view.MenuView;
 
-import javax.swing.*;
+import javax.swing.JFrame;
 
 public class Main {
     public static void main(String[] args) {
