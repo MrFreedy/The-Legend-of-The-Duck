@@ -1,4 +1,4 @@
-package org.azal;
+package main.java.org.azal;
 
 import java.awt.BasicStroke;
 import java.awt.Color;

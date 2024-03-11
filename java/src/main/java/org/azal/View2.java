@@ -1,4 +1,4 @@
-package org.azal;
+package main.java.org.azal;
 
 import jdk.jshell.execution.Util;
 
