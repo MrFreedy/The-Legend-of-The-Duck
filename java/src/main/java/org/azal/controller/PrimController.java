@@ -15,17 +15,17 @@ public class PrimController{
         this.view = view;
         this.frame = frame;
 
-        JButton generateB = new JButton("Regénérer");
-        generateB.addActionListener(e -> {
+        JButton GenerateButton = new JButton("Regénérer");
+        GenerateButton.addActionListener(e -> {
             view.repaint();
         });
 
-        JButton exitB = new JButton("Quitter");
-        exitB.addActionListener(e -> {
+        JButton ExitButton = new JButton("Quitter");
+        ExitButton.addActionListener(e -> {
             frame.dispose();
         });
 
-        view.add(generateB);
-        view.add(exitB);
+        view.add(GenerateButton);
+        view.add(ExitButton);
     }
 }
