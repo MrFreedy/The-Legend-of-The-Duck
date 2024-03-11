@@ -14,21 +14,40 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * The PrimModel class represents the model in the Model-View-Controller (MVC) pattern for managing
+ * the data and business logic of the Prim algorithm. It includes the generation and management of
+ * textures, points, trees, rooms, and other properties required for the algorithm.
+ */
 public class PrimModel {
-    public final BufferedImage image
-            = new BufferedImage(80, 80, BufferedImage.TYPE_INT_RGB);
+    /** The BufferedImage used for rendering the Prim algorithm visualization. */
+    public final BufferedImage image = new BufferedImage(80, 80, BufferedImage.TYPE_INT_RGB);
 
+    /** The TexturePaint for the stone texture. */
     private TexturePaint stoneTexture;
+
+    /** The TexturePaint for the dirt texture. */
     private TexturePaint dirtTexture;
+
+    /** The number of points in the algorithm. */
     private static final int NUM_POINTS = 8;
+
+    /** The list of points used in the Prim algorithm. */
     private final List<Point> points = new ArrayList<>();
+
+    /** The list of points forming the tree in the Prim algorithm. */
     private final List<Point> tree = new ArrayList<>();
 
+    /** The maximum size of a room in the dungeon. */
     private static final int ROOM_MAX_SIZE = 30;
+
+    /** The minimum size of a room in the dungeon. */
     private static final int ROOM_MIN_SIZE = 20;
 
+    /** The minimum distance between rooms in the dungeon. */
     private static final int ROOM_MIN_DISTANCE = 2;
 
+    /** The list of rectangles representing rooms in the dungeon. */
     private final List<Rectangle> rooms = new ArrayList<>();
 
     public PrimModel() {

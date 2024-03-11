@@ -14,9 +14,18 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.util.Objects;
 
+/**
+ * The MenuController class serves as a controller in the Model-View-Controller (MVC) pattern for managing
+ * the interaction between the MenuModel and MenuView components. It facilitates communication and control
+ * flow between the model and view of a menu-related application.
+ */
 public class MenuController {
+    /** The MenuModel instance responsible for managing the data and business logic of the menu. */
     private MenuModel model;
+
+    /** The MenuView instance responsible for displaying the graphical user interface of the menu. */
     private MenuView view;
+
     Dimension comboSize = new Dimension(200, 30);
 
     public MenuController(MenuModel model, MenuView view) {
