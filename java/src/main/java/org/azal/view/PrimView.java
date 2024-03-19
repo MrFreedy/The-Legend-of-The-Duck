@@ -25,11 +25,11 @@ public class PrimView extends JPanel {
     }
 
     @Override
-    protected void paintComponent(java.awt.Graphics g) {
-        super.paintComponent(g);
+    protected void paintComponent(java.awt.Graphics graphics) {
+        super.paintComponent(graphics);
         model.draw((Graphics2D) model.image.getGraphics());
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.drawImage(model.image, 0, 0, getWidth(), getHeight(), null);
+        Graphics2D graphics2D = (Graphics2D) graphics;
+        graphics2D.drawImage(model.image, 0, 0, getWidth(), getHeight(), null);
     }
 
 

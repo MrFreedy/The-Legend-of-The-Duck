@@ -4,29 +4,17 @@ import org.azal.model.MenuModel;
 import org.azal.model.PrimModel;
 import org.azal.view.MenuView;
 import org.azal.view.PrimView;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.BoxLayout;
-import java.awt.Color;
-import java.awt.Dimension;
+
+import javax.swing.*;
+import java.awt.*;
 import java.util.Objects;
 
-/**
- * The MenuController class serves as a controller in the Model-View-Controller (MVC) pattern for managing
- * the interaction between the MenuModel and MenuView components. It facilitates communication and control
- * flow between the model and view of a menu-related application.
- */
 public class MenuController {
-    /** The MenuModel instance responsible for managing the data and business logic of the menu. */
     private MenuModel model;
-
-    /** The MenuView instance responsible for displaying the graphical user interface of the menu. */
     private MenuView view;
-
-    Dimension comboSize = new Dimension(200, 30);
+    private final int widthDimension=200;
+    private final int heightDimension=30;
+    Dimension comboSize = new Dimension(widthDimension, heightDimension);
 
     public MenuController(MenuModel model, MenuView view) {
         this.model = model;
@@ -37,7 +25,7 @@ public class MenuController {
         panelV.setBackground(Color.WHITE);
         panelV.setLayout(boxLayoutV);
 
-        JLabel label = new JLabel("Quel type d'algorithme de génération souhaitez-vous utiliser ?");
+        JLabel AlgorithmChoice = new JLabel("Quel type d'algorithme de génération souhaitez-vous utiliser ?");
 
         JComboBox<String> comboBox = new JComboBox<>(
             new String[]{"Algorithme de Prim", "Algorithme BSP"}
@@ -50,8 +38,8 @@ public class MenuController {
         panelH.setBackground(Color.WHITE);
         panelH.setLayout(boxLayoutH);
 
-        JButton validateB = new JButton("Valider");
-        validateB.addActionListener(e -> {
+        JButton ValidateButton = new JButton("Valider");
+        ValidateButton.addActionListener(e -> {
             if(Objects.equals(comboBox.getSelectedItem(), "Algorithme de Prim")){
                 PrimModel modelPrim = new PrimModel();
                 PrimView viewPrim = new PrimView(modelPrim);
@@ -66,16 +54,16 @@ public class MenuController {
             }
         });
 
-        JButton exitB = new JButton("Quitter");
-        exitB.addActionListener(e -> {
+        JButton ExitButton = new JButton("Quitter");
+        ExitButton.addActionListener(e -> {
             System.exit(0);
         });
 
-        panelV.add(label);
+        panelV.add(AlgorithmChoice);
         panelV.add(comboBox);
         panelV.add(panelH);
-        panelH.add(validateB);
-        panelH.add(exitB);
+        panelH.add(ValidateButton);
+        panelH.add(ExitButton);
 
         view.add(panelV);
 
