@@ -1,24 +1,47 @@
 package org.azal.bsp;
 
-
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JPanel;
+import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Point;
+import java.awt.Graphics2D;
+import java.awt.BasicStroke;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/** The Dungeon class represents a graphical user interface component for displaying a dungeon layout.
+ *  It extends JPanel and includes features such as rooms, corridors, doors, and a boss position.
+ */
 class Dungeon extends JPanel {
-    static final int WIDTH = 800, HEIGHT = 800;
+    /** The width of the dungeon panel. */
+    static final int WIDTH = 800;
+
+    /** The height of the dungeon panel. */
+    static final int HEIGHT = 800;
+
+    /** List of rectangles representing partitions in the dungeon. */
     private List<Rectangle> partitions;
+
+    /** The color of the rooms in the dungeon (blue). */
     private final Color roomColor = Color.BLUE;
+
+    /** The color of the corridors in the dungeon (red). */
     private final Color corridorColor = Color.RED;
+
+    /** The color of the doors in the dungeon (green). */
     private final Color doorColor = Color.GREEN;
+
+    /** List of rectangles representing doors in the dungeon. */
     private List<Rectangle> doors;
 
+    /** The size of the doors in the dungeon. */
     private static final int DOOR_SIZE = 7;
+
+    /** The position of the boss in the dungeon. */
     private Point bossPosition;
-
-
 
     public Dungeon() {
         doors = new ArrayList<>();
