@@ -1,5 +1,7 @@
 package org.azal.model;
 
+import org.w3c.dom.css.Rect;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +14,7 @@ public class BSPModel {
     private static final int DOOR_SIZE = 7;
     private Point bossPosition;
     private Point keyPosition;
+    private Point spawnPosition;
     private final Color roomColor = Color.BLUE;
     private final Color corridorColor = Color.RED;
     private final Color doorColor = Color.GREEN;
@@ -32,6 +35,10 @@ public class BSPModel {
         keyPosition = new Point(
                 keyRoom.x + keyRoom.width / 2,
                 keyRoom.y + keyRoom.height / 2);
+        Rectangle spawnRoom = partitions.get(new Random().nextInt(partitions.size()/2));
+        spawnPosition = new Point(
+                spawnRoom.x + spawnRoom.width / 2,
+                spawnRoom.y + spawnRoom.height / 2);
     }
 
     public void generateNewBSP(){
@@ -55,6 +62,14 @@ public class BSPModel {
         keyPosition = new Point(
                 keyRoom.x + keyRoom.width / 2,
                 keyRoom.y + keyRoom.height / 2);
+
+        Rectangle spawnRoom;
+        do {
+            spawnRoom = partitions.get(new Random().nextInt(partitions.size() / 2));
+        } while (spawnRoom == bossRoom || spawnRoom == keyRoom);
+        spawnPosition = new Point(
+                spawnRoom.x + spawnRoom.width / 2,
+                spawnRoom.y + spawnRoom.height / 2);
     }
 
     private void splitPartitions(List<Rectangle> partitions, int maxRooms) {
@@ -167,6 +182,9 @@ public class BSPModel {
         return keyPosition;
     }
 
+    public Point getSpawnPosition() {
+        return spawnPosition;
+    }
     public Color getRoomColor() {
         return roomColor;
     }
