@@ -11,6 +11,7 @@ public class BSPModel {
     private List<Rectangle> doors;
     private static final int DOOR_SIZE = 7;
     private Point bossPosition;
+    private Point keyPosition;
     private final Color roomColor = Color.BLUE;
     private final Color corridorColor = Color.RED;
     private final Color doorColor = Color.GREEN;
@@ -27,11 +28,16 @@ public class BSPModel {
         bossPosition = new Point(
                 bossRoom.x + bossRoom.width / 2,
                 bossRoom.y + bossRoom.height / 2);
+        Rectangle keyRoom = partitions.get(new Random().nextInt(partitions.size()/2));
+        keyPosition = new Point(
+                keyRoom.x + keyRoom.width / 2,
+                keyRoom.y + keyRoom.height / 2);
     }
 
     public void generateNewBSP(){
         partitions.clear();
         doors.clear();
+        partitions.add(new Rectangle(60,50,WIDTH-120,HEIGHT-120));
 
         splitPartitions(partitions, 5);
         createCorridors(partitions);
@@ -40,6 +46,15 @@ public class BSPModel {
         bossPosition = new Point(
                 bossRoom.x + bossRoom.width / 2,
                 bossRoom.y + bossRoom.height / 2);
+
+        Rectangle keyRoom;
+        do {
+            keyRoom = partitions.get(new Random().nextInt(partitions.size() / 2));
+        } while (keyRoom == bossRoom);
+
+        keyPosition = new Point(
+                keyRoom.x + keyRoom.width / 2,
+                keyRoom.y + keyRoom.height / 2);
     }
 
     private void splitPartitions(List<Rectangle> partitions, int maxRooms) {
@@ -146,6 +161,10 @@ public class BSPModel {
 
     public Point getBossPosition() {
         return bossPosition;
+    }
+
+    public Point getKeyPosition() {
+        return keyPosition;
     }
 
     public Color getRoomColor() {

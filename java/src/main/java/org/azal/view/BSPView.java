@@ -37,7 +37,10 @@ public class BSPView extends JPanel {
             g.fillRect(door.x, door.y, door.width, door.height);
         }
 
-        g.setColor(Color.YELLOW);
+        g.setColor(Color.RED);
         g.fillOval(model.getBossPosition().x, model.getBossPosition().y, 20, 20);
+
+        g.setColor(Color.ORANGE);
+        g.fillOval(model.getKeyPosition().x, model.getKeyPosition().y, 20, 20);
     }
 }
