@@ -1,14 +1,14 @@
 package org.azal.model;
 
+import org.w3c.dom.css.Rect;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.*;
 import java.util.List;
-import java.util.Set;
 
 public class PrimModel {
     private final int WidthBuffer = 80;
@@ -24,6 +24,10 @@ public class PrimModel {
     private final List<Point> tree = new ArrayList<>();
     private final List<Rectangle> rooms = new ArrayList<>();
 
+    private Point bossPosition;
+    private Point keyPosition;
+    private Point spawnPosition;
+
     public PrimModel() {
         try {
             int x=0;
@@ -37,6 +41,9 @@ public class PrimModel {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        bossPosition = new Point();
+        keyPosition = new Point();
+        spawnPosition = new Point();
     }
 
     public void draw(Graphics2D graphics2D) {
@@ -103,7 +110,6 @@ public class PrimModel {
             graphics2D.fill(rectangleUn);
             graphics2D.draw(rectangleUn);
             points.add(point);
-
         }
 
         tree.add(points.remove(0));
@@ -153,5 +159,43 @@ public class PrimModel {
                     , room.height - ROOM_MIN_DISTANCE / 2);
         }
 
+        if (!rooms.isEmpty()) {
+            // Generate random positions for the boss within the rooms
+            Rectangle bossRoom = rooms.get(new Random().nextInt(rooms.size()));
+            bossPosition.setLocation(
+                    bossRoom.x + bossRoom.width / 2,
+                    bossRoom.y + bossRoom.height / 2
+            );
+
+            Rectangle keyRoom;
+            do {
+                keyRoom = rooms.get(new Random().nextInt(rooms.size()));
+            } while (keyRoom == bossRoom);
+
+            keyPosition.setLocation(
+                    keyRoom.x+2 + keyRoom.width / 2,//+2 to avoid the superposition with spawn position
+                    keyRoom.y+2 + keyRoom.height / 2//+2 to avoid the superposition with spawn position
+            );
+
+            Rectangle spawnRoom;
+            do {
+                spawnRoom = rooms.get(new Random().nextInt(rooms.size()));
+            } while (spawnRoom == bossRoom || (spawnRoom == keyRoom && rooms.size() > 3));
+
+            spawnPosition.setLocation(
+                    spawnRoom.x + spawnRoom.width / 2,
+                    spawnRoom.y + spawnRoom.height / 2
+            );
+
+            // Draw the boss, the key and the player at their positions
+            graphics2D.setColor(Color.RED); // Change this to the color of the boss
+            graphics2D.fillOval(bossPosition.x, bossPosition.y, 5, 5); // Change the size as needed
+
+            graphics2D.setColor(Color.ORANGE); // Change this to the color of the key
+            graphics2D.fillOval(keyPosition.x, keyPosition.y, 5, 5); // Change the size as needed
+
+            graphics2D.setColor(Color.GREEN); // Change this to the color of the player
+            graphics2D.fillOval(spawnPosition.x, spawnPosition.y, 5, 5); // Change the size as needed
+        }
     }
 }
