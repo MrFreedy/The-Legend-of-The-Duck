@@ -1,5 +1,6 @@
 package org.azal.model;
 
+import org.azal.entities.*;
 import org.w3c.dom.css.Rect;
 
 import javax.imageio.ImageIO;
@@ -22,16 +23,22 @@ public class PrimModel {
     private TexturePaint dirtTexture;
     private final List<Point> points = new ArrayList<>();
     private final List<Point> tree = new ArrayList<>();
-    private final List<Rectangle> rooms = new ArrayList<>();
+
+    private final List<Room> rooms = new ArrayList<>();
+    private HashMap<Room, Object> roomObjects = new HashMap<>();
+
+    private HashMap<Corridor, List<Room>> corridorObjects = new HashMap<>();
 
     private Point bossPosition;
     private Point keyPosition;
     private Point spawnPosition;
 
+    private boolean isGettingKey = false;
+
     public PrimModel() {
         try {
-            int x=0;
-            int y=0;
+            int x = 0;
+            int y = 0;
             // load the image from the file
             BufferedImage stoneImage = ImageIO.read(new File("src/data/tiles/stone.png"));
             BufferedImage dirtImage = ImageIO.read(new File("src/data/tiles/dirt.png"));
@@ -47,155 +54,253 @@ public class PrimModel {
     }
 
     public void draw(Graphics2D graphics2D) {
-        int x=0;
-        int y=0;
+        int x = 0;
+        int y = 0;
 
-        graphics2D.clearRect(x, y, image.getWidth(), image.getHeight());
+        corridorObjects.clear();
+        roomObjects.clear();
 
-        Set<Integer> xs = new HashSet<>();
-        Set<Integer> ys = new HashSet<>();
+        if (isGettingKey) {
+            graphics2D.clearRect(0, 0, image.getWidth(), image.getHeight());
+            graphics2D.setColor(Color.WHITE);
+            graphics2D.fillRect(0, 0, image.getWidth(), image.getHeight());
+            graphics2D.setColor(Color.BLACK);
+            graphics2D.drawString("You got the key!", image.getWidth() / 2, image.getHeight() / 2);
+            return;
+        } else {
+            graphics2D.clearRect(x, y, image.getWidth(), image.getHeight());
 
-        points.clear();
-        tree.clear();
-        rooms.clear();
+            Set<Integer> xs = new HashSet<>();
+            Set<Integer> ys = new HashSet<>();
 
-        graphics2D.setColor(Color.WHITE);
+            points.clear();
+            tree.clear();
+            rooms.clear();
 
-        outer:
-        for (int i = 0; i < NUM_POINTS; i++) {
-            x = (int) (10 + (image.getWidth() - 20) * Math.random());
-            y = (int) (10 + (image.getHeight() - 20) * Math.random());
-            Point point = new Point(x, y);
+            graphics2D.setColor(Color.WHITE);
 
-            int width = (int) (ROOM_MIN_SIZE + ((ROOM_MAX_SIZE - ROOM_MIN_SIZE) * Math.random()));
+            outer:
+            for (int i = 0; i < NUM_POINTS; i++) {
+                x = (int) (10 + (image.getWidth() - 20) * Math.random());
+                y = (int) (10 + (image.getHeight() - 20) * Math.random());
+                Point point = new Point(x, y);
 
-            int height = (int) (ROOM_MIN_SIZE + ((ROOM_MAX_SIZE - ROOM_MIN_SIZE) * Math.random()));
+                int width = (int) (ROOM_MIN_SIZE + ((ROOM_MAX_SIZE - ROOM_MIN_SIZE) * Math.random()));
 
-            Rectangle rectangleUn = new Rectangle(point.x - width / 2, point.y - height / 2, width, height);
-            for (Rectangle rectangleDeux : rooms) {
-                if (rectangleUn.intersects(rectangleDeux)) {
-                    continue outer;
-                }
-            }
+                int height = (int) (ROOM_MIN_SIZE + ((ROOM_MAX_SIZE - ROOM_MIN_SIZE) * Math.random()));
 
-            // ensure each room doesn't touch others
-            rectangleUn.x += ROOM_MIN_DISTANCE;
-            rectangleUn.y += ROOM_MIN_DISTANCE;
-            rectangleUn.width -= 2 * ROOM_MIN_DISTANCE;
-            rectangleUn.height -= 2 * ROOM_MIN_DISTANCE;
-
-            // ensure path doesn't collide with one of wall corners
-            if (xs.contains(rectangleUn.x) || xs.contains(rectangleUn.x + rectangleUn.width / 2)
-                    || xs.contains(rectangleUn.x + rectangleUn.width)
-                    || ys.contains(rectangleUn.y) || ys.contains(rectangleUn.y + rectangleUn.height / 2)
-                    || ys.contains(rectangleUn.y + rectangleUn.height)) {
-
-                continue;
-            }
-
-            // save wich xs and ys can't be used for next room
-            int d = 0;
-            //for (int d = -1; d <= 1; d++) {
-            xs.add(rectangleUn.x + d);
-            xs.add(rectangleUn.x + rectangleUn.width / 2 + d);
-            xs.add(rectangleUn.x + rectangleUn.width + d);
-            ys.add(rectangleUn.y + d);
-            ys.add(rectangleUn.y + rectangleUn.height / 2 + d);
-            ys.add(rectangleUn.y + rectangleUn.height + d);
-            //}
-
-            rooms.add(rectangleUn);
-
-            graphics2D.setPaint(stoneTexture);
-            graphics2D.fill(rectangleUn);
-            graphics2D.draw(rectangleUn);
-            points.add(point);
-        }
-
-        tree.add(points.remove(0));
-
-        Point a, b;
-        double minDistance;
-        double dx, dy, distance;
-        while (!points.isEmpty()) {
-            a = null;
-            b = null;
-
-            minDistance = Double.MAX_VALUE;
-
-            for (Point p1 : tree) {
-                for (Point p2 : points) {
-                    dx = p2.x - p1.x;
-                    dy = p2.y - p1.y;
-                    distance = Math.sqrt(dx * dx + dy * dy);
-                    if (distance < minDistance) {
-                        minDistance = distance;
-                        a = p1;
-                        b = p2;
+                Room roomUn = new Room(new Rectangle(point.x - width / 2, point.y - height / 2, width, height));
+                for (Room roomDeux : rooms) {
+                    if (roomUn.getRectangle().intersects(roomDeux.getRectangle())) {
+                        continue outer;
                     }
                 }
+
+                // ensure each room doesn't touch others
+                Rectangle rectangleUn = roomUn.getRectangle();
+                rectangleUn.x += ROOM_MIN_DISTANCE;
+                rectangleUn.y += ROOM_MIN_DISTANCE;
+                rectangleUn.width -= 2 * ROOM_MIN_DISTANCE;
+                rectangleUn.height -= 2 * ROOM_MIN_DISTANCE;
+                roomUn.setRectangle(rectangleUn);
+
+                // ensure path doesn't collide with one of wall corners
+                if (xs.contains(rectangleUn.x) || xs.contains(rectangleUn.x + rectangleUn.width / 2)
+                        || xs.contains(rectangleUn.x + rectangleUn.width)
+                        || ys.contains(rectangleUn.y) || ys.contains(rectangleUn.y + rectangleUn.height / 2)
+                        || ys.contains(rectangleUn.y + rectangleUn.height)) {
+
+                    continue;
+                }
+
+                // save wich
+                for (int d = -1; d <= 1; d++) {
+                    xs.add(rectangleUn.x + d);
+                    xs.add(rectangleUn.x + rectangleUn.width / 2 + d);
+                    xs.add(rectangleUn.x + rectangleUn.width + d);
+                    ys.add(rectangleUn.y + d);
+                    ys.add(rectangleUn.y + rectangleUn.height / 2 + d);
+                    ys.add(rectangleUn.y + rectangleUn.height + d);
+                }
+
+                rooms.add(roomUn);
+
+                graphics2D.setPaint(stoneTexture);
+                graphics2D.fill(rectangleUn);
+                graphics2D.draw(rectangleUn);
+                points.add(point);
             }
 
-            if (a == null || b == null) {
-                throw new RuntimeException("error ?");
+            tree.add(points.remove(0));
+
+            for (int i = 0; i < rooms.size() - 1; i++) {
+                Room room1 = rooms.get(i);
+                Room room2 = rooms.get(i + 1);
+                Corridor corridor = new Corridor(room1, room2);
+                List<Room> tempRooms = new ArrayList<>();
+                tempRooms.add(room1);
+                tempRooms.add(room2);
+                corridorObjects.put(corridor, tempRooms);// Remplacez 'new Object()' par l'objet que vous souhaitez associer à ce couloir
+
+                graphics2D.setPaint(Color.RED);
+                graphics2D.drawLine(
+                        room1.getRectangle().x + room1.getRectangle().width / 2,
+                        room1.getRectangle().y + room1.getRectangle().height / 2,
+                        room2.getRectangle().x + room2.getRectangle().width / 2,
+                        room2.getRectangle().y + room2.getRectangle().height / 2
+                );
+
             }
 
-            points.remove(b);
-            tree.add(b);
+            // fill rooms
+            graphics2D.setPaintMode();
+            for (Room room : rooms) {
+                Rectangle rectangle = room.getRectangle();
+                graphics2D.setPaint(dirtTexture);
+                graphics2D.fillRect(rectangle.x + 1, rectangle.y + 1
+                        , rectangle.width - ROOM_MIN_DISTANCE / 2
+                        , rectangle.height - ROOM_MIN_DISTANCE / 2);
+            }
 
-            // draw path between one room to another
-            graphics2D.setColor(Color.RED);
-            graphics2D.drawLine(a.x, a.y, a.x, b.y);
-            graphics2D.drawLine(a.x, b.y, b.x, b.y);
+            if (!rooms.isEmpty()) {
 
+                Boss boss = new Boss();
+                Room bossRoom = rooms.get(new Random().nextInt(rooms.size()));
+                roomObjects.put(bossRoom, boss);
+
+                bossPosition.setLocation(
+                        bossRoom.getRectangle().x + bossRoom.getRectangle().width / 2,
+                        bossRoom.getRectangle().y + bossRoom.getRectangle().height / 2
+                );
+
+                Key key = new Key('A', new Point());
+                Room keyRoom;
+                do {
+                    keyRoom = rooms.get(new Random().nextInt(rooms.size()));
+                } while (roomObjects.containsKey(keyRoom));
+
+                roomObjects.put(keyRoom, key);
+
+                keyPosition.setLocation(
+                        keyRoom.getRectangle().x + 2 + keyRoom.getRectangle().width / 2,
+                        keyRoom.getRectangle().y + 2 + keyRoom.getRectangle().height / 2
+                );
+
+                Player player = new Player('P', new Point());
+                Room spawnRoom;
+                do {
+                    spawnRoom = rooms.get(new Random().nextInt(rooms.size()));
+                } while (spawnRoom == bossRoom || (spawnRoom == keyRoom && rooms.size() > 3));
+
+                roomObjects.put(spawnRoom, player);
+                spawnPosition.setLocation(
+                        spawnRoom.getRectangle().x + spawnRoom.getRectangle().width / 2,
+                        spawnRoom.getRectangle().y + spawnRoom.getRectangle().height / 2
+                );
+
+                List<Room> roomList = new ArrayList<>(roomObjects.keySet());
+                for (int i = 0; i < roomList.size() - 1; i++) {
+                    Room room1 = roomList.get(i);
+                    Room room2 = roomList.get(i + 1);
+                    Corridor corridor = new Corridor(room1, room2);
+                    List<Room> corridorRooms = new ArrayList<>();
+                    corridorRooms.add(room1);
+                    corridorRooms.add(room2);
+                    corridorObjects.put(corridor, corridorRooms);
+
+                    // Si le corridor relie la salle du joueur et la salle de la clé, changez sa couleur en vert
+                    if ((roomObjects.get(room1) instanceof Player && roomObjects.get(room2) instanceof Key)
+                            || (roomObjects.get(room1) instanceof Key && roomObjects.get(room2) instanceof Player)) {
+                        graphics2D.setColor(Color.GREEN);
+                        graphics2D.drawLine(
+                                room1.getRectangle().x + room1.getRectangle().width / 2,
+                                room1.getRectangle().y + room1.getRectangle().height / 2,
+                                room2.getRectangle().x + room2.getRectangle().width / 2,
+                                room2.getRectangle().y + room2.getRectangle().height / 2
+                        );
+                    }
+                }
+
+                for (Map.Entry<Room, Object> entry : roomObjects.entrySet()) {
+                    if (entry.getValue() instanceof Key) {
+                        keyRoom = entry.getKey();
+                        break;
+                    }
+                }
+
+                if (keyRoom != null) {
+                    List<Corridor> keyCorridors = new ArrayList<>();
+                    for (Map.Entry<Corridor, List<Room>> entry : corridorObjects.entrySet()) {
+                        Corridor corridor = entry.getKey();
+                        List<Room> corridorRooms = entry.getValue();
+                        if (corridorRooms.contains(keyRoom)) {
+                            keyCorridors.add(corridor);
+                        }
+                    }
+
+                    boolean isConnectedToPlayer = false;
+                    for (Corridor corridor : keyCorridors) {
+                        List<Room> corridorRooms = corridorObjects.get(corridor);
+                        for (Room room : corridorRooms) {
+                            if (roomObjects.get(room) instanceof Player) {
+                                isConnectedToPlayer = true;
+                                break;
+                            }
+                        }
+                        if (isConnectedToPlayer) {
+                            break;
+                        }
+                    }
+
+                    // ... rest of the draw method
+
+                    if (!isConnectedToPlayer) {
+                        // Find the player's room
+                        Room playerRoom = null;
+                        for (Map.Entry<Room, Object> entry : roomObjects.entrySet()) {
+                            if (entry.getValue() instanceof Player) {
+                                playerRoom = entry.getKey();
+                                break;
+                            }
+                        }
+
+                        if (playerRoom != null) {
+                            Corridor corridor = new Corridor(keyRoom, playerRoom);
+                            List<Room> corridorRooms = new ArrayList<>();
+                            corridorRooms.add(keyRoom);
+                            corridorRooms.add(playerRoom);
+                            corridorObjects.put(corridor, corridorRooms);
+                        }
+                    }
+
+                    for (Map.Entry<Corridor, List<Room>> entry : corridorObjects.entrySet()) {
+                        Corridor corridor = entry.getKey();
+                        List<Room> corridorRooms = entry.getValue();
+                        if ((roomObjects.get(corridorRooms.get(0)) instanceof Player && roomObjects.get(corridorRooms.get(1)) instanceof Key)
+                                || (roomObjects.get(corridorRooms.get(0)) instanceof Key && roomObjects.get(corridorRooms.get(1)) instanceof Player)) {
+                            graphics2D.setColor(Color.GREEN);
+                            graphics2D.drawLine(
+                                    corridorRooms.get(0).getRectangle().x + corridorRooms.get(0).getRectangle().width / 2,
+                                    corridorRooms.get(0).getRectangle().y + corridorRooms.get(0).getRectangle().height / 2,
+                                    corridorRooms.get(1).getRectangle().x + corridorRooms.get(1).getRectangle().width / 2,
+                                    corridorRooms.get(1).getRectangle().y + corridorRooms.get(1).getRectangle().height / 2
+                            );
+                        }
+                    }
+                }
+
+                graphics2D.setColor(Color.RED); // Change this to the color of the boss
+                graphics2D.fillOval(bossPosition.x, bossPosition.y, 5, 5); // Change the size as needed
+
+                graphics2D.setColor(Color.ORANGE); // Change this to the color of the key
+                graphics2D.fillOval(keyPosition.x, keyPosition.y, 5, 5); // Change the size as needed
+
+                graphics2D.setColor(Color.GREEN); // Change this to the color of the player
+                graphics2D.fillOval(spawnPosition.x, spawnPosition.y, 5, 5); // Change the size as needed
+            }
         }
-
-        // fill rooms
-        graphics2D.setPaintMode();
-        for (Rectangle room : rooms) {
-            graphics2D.setPaint(dirtTexture);
-            graphics2D.fillRect(room.x + 1, room.y + 1
-                    , room.width - ROOM_MIN_DISTANCE / 2
-                    , room.height - ROOM_MIN_DISTANCE / 2);
-        }
-
-        if (!rooms.isEmpty()) {
-            // Generate random positions for the boss within the rooms
-            Rectangle bossRoom = rooms.get(new Random().nextInt(rooms.size()));
-            bossPosition.setLocation(
-                    bossRoom.x + bossRoom.width / 2,
-                    bossRoom.y + bossRoom.height / 2
-            );
-
-            Rectangle keyRoom;
-            do {
-                keyRoom = rooms.get(new Random().nextInt(rooms.size()));
-            } while (keyRoom == bossRoom);
-
-            keyPosition.setLocation(
-                    keyRoom.x+2 + keyRoom.width / 2,//+2 to avoid the superposition with spawn position
-                    keyRoom.y+2 + keyRoom.height / 2//+2 to avoid the superposition with spawn position
-            );
-
-            Rectangle spawnRoom;
-            do {
-                spawnRoom = rooms.get(new Random().nextInt(rooms.size()));
-            } while (spawnRoom == bossRoom || (spawnRoom == keyRoom && rooms.size() > 3));
-
-            spawnPosition.setLocation(
-                    spawnRoom.x + spawnRoom.width / 2,
-                    spawnRoom.y + spawnRoom.height / 2
-            );
-
-            // Draw the boss, the key and the player at their positions
-            graphics2D.setColor(Color.RED); // Change this to the color of the boss
-            graphics2D.fillOval(bossPosition.x, bossPosition.y, 5, 5); // Change the size as needed
-
-            graphics2D.setColor(Color.ORANGE); // Change this to the color of the key
-            graphics2D.fillOval(keyPosition.x, keyPosition.y, 5, 5); // Change the size as needed
-
-            graphics2D.setColor(Color.GREEN); // Change this to the color of the player
-            graphics2D.fillOval(spawnPosition.x, spawnPosition.y, 5, 5); // Change the size as needed
-        }
+    }
+    public void getKey(boolean isGettingKey) {
+        this.isGettingKey = isGettingKey;
     }
 }

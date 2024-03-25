@@ -20,6 +20,8 @@ public class PrimController {
     /** The JFrame instance associated with the Prim algorithm visualization, if applicable. */
     private JFrame frame;
 
+    public boolean isGettingKey = false;
+
     public PrimController(PrimModel model, PrimView view, JFrame frame) {
         this.model = model;
         this.view = view;
@@ -35,7 +37,15 @@ public class PrimController {
             frame.dispose();
         });
 
+        JButton GetKeyButton = new JButton("Obtenir la clé");
+        GetKeyButton.addActionListener(e -> {
+            isGettingKey = true;
+            model.getKey(isGettingKey);
+            view.repaint();
+        });
+
         view.add(GenerateButton);
         view.add(ExitButton);
+        view.add(GetKeyButton);
     }
 }
