@@ -1,9 +1,12 @@
 package org.azal.model;
 
+import org.azal.controller.PrimController;
 import org.azal.entities.*;
+import org.azal.view.PrimView;
 import org.w3c.dom.css.Rect;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -34,6 +37,8 @@ public class PrimModel {
     private Point spawnPosition;
 
     private boolean isGettingKey = false;
+    private boolean isFight = false;
+    private final Color corridorClosed = Color.RED;
 
     public PrimModel() {
         try {
@@ -57,17 +62,74 @@ public class PrimModel {
         int x = 0;
         int y = 0;
 
-        corridorObjects.clear();
-        roomObjects.clear();
 
         if (isGettingKey) {
-            graphics2D.clearRect(0, 0, image.getWidth(), image.getHeight());
-            graphics2D.setColor(Color.WHITE);
-            graphics2D.fillRect(0, 0, image.getWidth(), image.getHeight());
-            graphics2D.setColor(Color.BLACK);
-            graphics2D.drawString("You got the key!", image.getWidth() / 2, image.getHeight() / 2);
-            return;
-        } else {
+            for (Corridor corridor : corridorObjects.keySet()) {
+                corridor.setColor(Color.GREEN);
+                List<Room> corridorRooms = corridorObjects.get(corridor);
+                graphics2D.setPaint(corridor.getColor());
+                graphics2D.drawLine(
+                        corridorRooms.get(0).getRectangle().x + corridorRooms.get(0).getRectangle().width / 2,
+                        corridorRooms.get(0).getRectangle().y + corridorRooms.get(0).getRectangle().height / 2,
+                        corridorRooms.get(1).getRectangle().x + corridorRooms.get(1).getRectangle().width / 2,
+                        corridorRooms.get(1).getRectangle().y + corridorRooms.get(1).getRectangle().height / 2
+                );
+
+
+            }
+
+            for (Room room : roomObjects.keySet()) {
+                Rectangle rectangle = room.getRectangle();
+                graphics2D.setPaint(stoneTexture);
+                graphics2D.fill(rectangle);
+                graphics2D.draw(rectangle);
+                graphics2D.setPaint(dirtTexture);
+                graphics2D.fillRect(rectangle.x + 1, rectangle.y + 1
+                        , rectangle.width - ROOM_MIN_DISTANCE / 2
+                        , rectangle.height - ROOM_MIN_DISTANCE / 2);
+            }
+
+            List<Player> players = roomObjects.values().stream()
+                    .filter(object -> object instanceof Player)
+                    .map(object -> (Player) object)
+                    .toList();
+            for (Player player : players) {
+                graphics2D.setColor(Color.BLUE);
+                graphics2D.fillOval(keyPosition.x, keyPosition.y, 5, 5);
+                player.setPosition(keyPosition);
+            }
+
+            for(Boss boss : roomObjects.values().stream()
+                    .filter(object -> object instanceof Boss)
+                    .map(object -> (Boss) object)
+                    .toList()) {
+                graphics2D.setColor(Color.RED);
+                graphics2D.fillOval(bossPosition.x, bossPosition.y, 5, 5);
+            }
+
+            PrimController controller = new PrimController(this, new PrimView(this), new JFrame());
+            controller.getGetKeyButton().setVisible(false);
+
+            isGettingKey = false;
+
+        } else if(isFight) {
+            List<Player> players = roomObjects.values().stream()
+                    .filter(object -> object instanceof Player)
+                    .map(object -> (Player) object)
+                    .toList();
+            for (Player player : players) {
+                graphics2D.setColor(Color.BLUE);
+                graphics2D.fillOval(bossPosition.x, bossPosition.y, 5, 5);
+                graphics2D.setPaint(dirtTexture);
+                graphics2D.fillRect(player.getPosition().x, player.getPosition().y, 5, 5);
+                player.setPosition(bossPosition);
+                isFight = false;
+            }
+
+        }else{
+            corridorObjects.clear();
+            roomObjects.clear();
+
             graphics2D.clearRect(x, y, image.getWidth(), image.getHeight());
 
             Set<Integer> xs = new HashSet<>();
@@ -128,6 +190,10 @@ public class PrimModel {
                 graphics2D.setPaint(stoneTexture);
                 graphics2D.fill(rectangleUn);
                 graphics2D.draw(rectangleUn);
+                graphics2D.setPaint(dirtTexture);
+                graphics2D.fillRect(rectangleUn.x + 1, rectangleUn.y + 1
+                        , rectangleUn.width - ROOM_MIN_DISTANCE / 2
+                        , rectangleUn.height - ROOM_MIN_DISTANCE / 2);
                 points.add(point);
             }
 
@@ -136,11 +202,11 @@ public class PrimModel {
             for (int i = 0; i < rooms.size() - 1; i++) {
                 Room room1 = rooms.get(i);
                 Room room2 = rooms.get(i + 1);
-                Corridor corridor = new Corridor(room1, room2);
+                Corridor corridor = new Corridor(room1, room2, corridorClosed);
                 List<Room> tempRooms = new ArrayList<>();
                 tempRooms.add(room1);
                 tempRooms.add(room2);
-                corridorObjects.put(corridor, tempRooms);// Remplacez 'new Object()' par l'objet que vous souhaitez associer à ce couloir
+                corridorObjects.put(corridor, tempRooms);
 
                 graphics2D.setPaint(Color.RED);
                 graphics2D.drawLine(
@@ -150,16 +216,6 @@ public class PrimModel {
                         room2.getRectangle().y + room2.getRectangle().height / 2
                 );
 
-            }
-
-            // fill rooms
-            graphics2D.setPaintMode();
-            for (Room room : rooms) {
-                Rectangle rectangle = room.getRectangle();
-                graphics2D.setPaint(dirtTexture);
-                graphics2D.fillRect(rectangle.x + 1, rectangle.y + 1
-                        , rectangle.width - ROOM_MIN_DISTANCE / 2
-                        , rectangle.height - ROOM_MIN_DISTANCE / 2);
             }
 
             if (!rooms.isEmpty()) {
@@ -190,6 +246,10 @@ public class PrimModel {
                 Room spawnRoom;
                 do {
                     spawnRoom = rooms.get(new Random().nextInt(rooms.size()));
+                    player.setPosition(new Point(
+                            spawnRoom.getRectangle().x + spawnRoom.getRectangle().width / 2,
+                            spawnRoom.getRectangle().y + spawnRoom.getRectangle().height / 2
+                    ));
                 } while (spawnRoom == bossRoom || (spawnRoom == keyRoom && rooms.size() > 3));
 
                 roomObjects.put(spawnRoom, player);
@@ -202,7 +262,7 @@ public class PrimModel {
                 for (int i = 0; i < roomList.size() - 1; i++) {
                     Room room1 = roomList.get(i);
                     Room room2 = roomList.get(i + 1);
-                    Corridor corridor = new Corridor(room1, room2);
+                    Corridor corridor = new Corridor(room1, room2, corridorClosed);
                     List<Room> corridorRooms = new ArrayList<>();
                     corridorRooms.add(room1);
                     corridorRooms.add(room2);
@@ -252,8 +312,6 @@ public class PrimModel {
                         }
                     }
 
-                    // ... rest of the draw method
-
                     if (!isConnectedToPlayer) {
                         // Find the player's room
                         Room playerRoom = null;
@@ -265,7 +323,7 @@ public class PrimModel {
                         }
 
                         if (playerRoom != null) {
-                            Corridor corridor = new Corridor(keyRoom, playerRoom);
+                            Corridor corridor = new Corridor(keyRoom, playerRoom, corridorClosed);
                             List<Room> corridorRooms = new ArrayList<>();
                             corridorRooms.add(keyRoom);
                             corridorRooms.add(playerRoom);
@@ -302,5 +360,9 @@ public class PrimModel {
     }
     public void getKey(boolean isGettingKey) {
         this.isGettingKey = isGettingKey;
+    }
+
+    public void fight(boolean isFight) {
+        this.isFight = isFight;
     }
 }
