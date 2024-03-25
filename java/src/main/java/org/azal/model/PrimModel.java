@@ -295,7 +295,7 @@ public class PrimModel {
                 graphics2D.setColor(Color.ORANGE); // Change this to the color of the key
                 graphics2D.fillOval(keyPosition.x, keyPosition.y, 5, 5); // Change the size as needed
 
-                graphics2D.setColor(Color.GREEN); // Change this to the color of the player
+                graphics2D.setColor(Color.BLUE); // Change this to the color of the player
                 graphics2D.fillOval(spawnPosition.x, spawnPosition.y, 5, 5); // Change the size as needed
             }
         }
