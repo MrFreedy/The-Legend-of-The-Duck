@@ -30,6 +30,7 @@ public class PrimView extends JPanel {
         model.draw((Graphics2D) model.image.getGraphics());
         Graphics2D graphics2D = (Graphics2D) graphics;
         graphics2D.drawImage(model.image, 0, 0, getWidth(), getHeight(), null);
+        model.setBuilding(false);
     }
 
 

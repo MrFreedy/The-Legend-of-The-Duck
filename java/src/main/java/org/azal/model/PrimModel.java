@@ -38,6 +38,8 @@ public class PrimModel {
 
     private boolean isGettingKey = false;
     private boolean isFight = false;
+    private boolean bossDead = false;
+    public boolean isBuilding = true;
     private final Color corridorClosed = Color.RED;
 
     public PrimModel() {
@@ -61,8 +63,6 @@ public class PrimModel {
     public void draw(Graphics2D graphics2D) {
         int x = 0;
         int y = 0;
-
-
         if (isGettingKey) {
             for (Corridor corridor : corridorObjects.keySet()) {
                 corridor.setColor(Color.GREEN);
@@ -74,8 +74,6 @@ public class PrimModel {
                         corridorRooms.get(1).getRectangle().x + corridorRooms.get(1).getRectangle().width / 2,
                         corridorRooms.get(1).getRectangle().y + corridorRooms.get(1).getRectangle().height / 2
                 );
-
-
             }
 
             for (Room room : roomObjects.keySet()) {
@@ -107,9 +105,6 @@ public class PrimModel {
                 graphics2D.fillOval(bossPosition.x, bossPosition.y, 5, 5);
             }
 
-            PrimController controller = new PrimController(this, new PrimView(this), new JFrame());
-            controller.getGetKeyButton().setVisible(false);
-
             isGettingKey = false;
 
         } else if(isFight) {
@@ -125,8 +120,8 @@ public class PrimModel {
                 player.setPosition(bossPosition);
                 isFight = false;
             }
-
-        }else{
+            bossDead = true;
+        }else if (isBuilding){
             corridorObjects.clear();
             roomObjects.clear();
 
@@ -364,5 +359,17 @@ public class PrimModel {
 
     public void fight(boolean isFight) {
         this.isFight = isFight;
+    }
+
+    public void setBuilding(boolean building) {
+        isBuilding = building;
+    }
+
+    public boolean isBossDead() {
+        return bossDead;
+    }
+
+    public void setBossDead(boolean bossDead) {
+        this.bossDead = bossDead;
     }
 }

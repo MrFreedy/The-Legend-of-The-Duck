@@ -1,10 +1,9 @@
 package org.azal.controller;
 
 import org.azal.model.EnigmaModel;
-import org.azal.model.MenuModel;
 import org.azal.model.PrimModel;
+import org.azal.utils.XMLReader;
 import org.azal.view.EnigmaView;
-import org.azal.view.MenuView;
 import org.azal.view.PrimView;
 
 import javax.swing.*;
@@ -31,36 +30,65 @@ public class PrimController {
     private JButton ExitButton;
     private JButton GetKeyButton;
     private JButton FightButton;
+    private JButton FinishButton;
 
     public PrimController(PrimModel model, PrimView view, JFrame frame) {
         this.model = model;
         this.view = view;
         this.frame = frame;
 
-        GenerateButton = new JButton("Regénérer");
+        XMLReader xmlReaderConfig = new XMLReader("src/data/config.xml");
+        XMLReader xmlReaderMessages = new XMLReader(String.format("src/data/language/%s.xml", xmlReaderConfig.getValue("language")));
+
+        //Load config settings from the XML file
+        final int ENIGMA_WIDTH = Integer.parseInt(xmlReaderConfig.getValue("enigma","width"));
+        final int ENIGMA_HEIGHT = Integer.parseInt(xmlReaderConfig.getValue("enigma","height"));
+
+        // Load all the buttons and messages from the XML file
+        final String regenerateTextButton = xmlReaderMessages.getValue("button","regenerate");
+        final String exitTextButton = xmlReaderMessages.getValue("button","exit");
+        final String getKeyTextButton = xmlReaderMessages.getValue("button","getKey");
+        final String fightTextButton = xmlReaderMessages.getValue("button","fight");
+        final String finishTextButton = xmlReaderMessages.getValue("button","finish");
+
+        final String successGetKeyMessage = xmlReaderMessages.getValue("success","getKey");
+        final String errorGetKeyMessage = xmlReaderMessages.getValue("error","getKey");
+        final String errorBossFightMessage = xmlReaderMessages.getValue("error","fightBoss");
+        final String successFinishMessage = xmlReaderMessages.getValue("success","finish");
+
+
+        GenerateButton = new JButton(regenerateTextButton);
         GenerateButton.addActionListener(e -> {
+            model.setBuilding(true);
+            model.setBossDead(false);
+            keyGetted = false;
             view.repaint();
         });
 
-        ExitButton = new JButton("Quitter");
+        ExitButton = new JButton(exitTextButton);
         ExitButton.addActionListener(e -> {
             frame.dispose();
         });
 
-        GetKeyButton = new JButton("Obtenir la clé");
+        GetKeyButton = new JButton(getKeyTextButton);
         GetKeyButton.addActionListener(e -> {
-            isGettingKey = true;
-            model.getKey(isGettingKey);
-            view.repaint();
-            keyGetted = true;
+            if(!keyGetted){
+                isGettingKey = true;
+                model.getKey(isGettingKey);
+                view.repaint();
+                keyGetted = true;
 
-            JOptionPane.showMessageDialog(null, "Vous avez ramassé la clé");
+                JOptionPane.showMessageDialog(null, successGetKeyMessage);
+            }else{
+                JOptionPane.showMessageDialog(null, errorGetKeyMessage);
+            }
+
         });
 
-        FightButton = new JButton("Combattre");
+        FightButton = new JButton(fightTextButton);
         FightButton.addActionListener(e -> {
             if(!keyGetted){
-                JOptionPane.showMessageDialog(null, "Vous devez obtenir la clé avant de combattre le boss final !");
+                JOptionPane.showMessageDialog(null, errorBossFightMessage);
             }else{
                 isFight = true;
 
@@ -69,7 +97,7 @@ public class PrimController {
                 JFrame enigmaFrame = new JFrame();
                 EnigmaController enigmaController = new EnigmaController(enigmaModel, enigmaView,enigmaFrame, view,model);
 
-                enigmaFrame.setSize(800, 200);
+                enigmaFrame.setSize(ENIGMA_WIDTH, ENIGMA_HEIGHT);
                 enigmaFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 enigmaFrame.add(enigmaView);
                 enigmaFrame.setVisible(true);
@@ -77,10 +105,22 @@ public class PrimController {
             }
         });
 
+        FinishButton = new JButton(finishTextButton);
+        FinishButton.addActionListener(e -> {
+            if(model.isBossDead()){
+                JOptionPane.showMessageDialog(null, successFinishMessage);
+                frame.dispose();
+            }else{
+                JOptionPane.showMessageDialog(null, "");
+            }
+        });
+
+
         view.add(GenerateButton);
         view.add(ExitButton);
         view.add(GetKeyButton);
         view.add(FightButton);
+        view.add(FinishButton);
     }
 
     public JButton getGenerateButton() {

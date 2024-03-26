@@ -3,6 +3,7 @@ package org.azal.controller;
 import org.azal.model.BSPModel;
 import org.azal.model.MenuModel;
 import org.azal.model.PrimModel;
+import org.azal.utils.XMLReader;
 import org.azal.view.BSPView;
 import org.azal.view.MenuView;
 import org.azal.view.PrimView;
@@ -14,23 +15,34 @@ import java.util.Objects;
 public class MenuController {
     private MenuModel model;
     private MenuView view;
-    private final int widthDimension=200;
-    private final int heightDimension=30;
-    Dimension comboSize = new Dimension(widthDimension, heightDimension);
 
     public MenuController(MenuModel model, MenuView view) {
         this.model = model;
         this.view = view;
+
+        XMLReader xmlReaderConfig = new XMLReader("src/data/config.xml");
+        XMLReader xmlReaderMessages = new XMLReader(String.format("src/data/language/%s.xml", xmlReaderConfig.getValue("language")));
+
+        final String confirmTextButton = xmlReaderMessages.getValue("button","confirm");
+        final String exitTextButton = xmlReaderMessages.getValue("button","exit");
+
+        final int COMBO_WIDTH =Integer.parseInt(xmlReaderConfig.getValue("combo","width"));
+        final int COMBO_HEIGHT =Integer.parseInt(xmlReaderConfig.getValue("combo","height"));
+        Dimension comboSize = new Dimension(COMBO_WIDTH, COMBO_HEIGHT);
+
+        final String menuQuestion = xmlReaderMessages.getValue("menu","question");
+        final String primChoice = xmlReaderMessages.getValue("menu","prim");
+        final String bspChoice = xmlReaderMessages.getValue("menu","bsp");
 
         JPanel panelV = new JPanel();
         BoxLayout boxLayoutV = new BoxLayout(panelV, BoxLayout.Y_AXIS);
         panelV.setBackground(Color.WHITE);
         panelV.setLayout(boxLayoutV);
 
-        JLabel AlgorithmChoice = new JLabel("Quel type d'algorithme de génération souhaitez-vous utiliser ?");
+        JLabel AlgorithmChoice = new JLabel(menuQuestion);
 
         JComboBox<String> comboBox = new JComboBox<>(
-            new String[]{"Algorithme de Prim", "Algorithme BSP"}
+            new String[]{primChoice, bspChoice}
         );
         comboBox.setPreferredSize(comboSize);
         comboBox.setMaximumSize(comboSize);
@@ -40,9 +52,9 @@ public class MenuController {
         panelH.setBackground(Color.WHITE);
         panelH.setLayout(boxLayoutH);
 
-        JButton ValidateButton = new JButton("Valider");
+        JButton ValidateButton = new JButton(confirmTextButton);
         ValidateButton.addActionListener(e -> {
-            if(Objects.equals(comboBox.getSelectedItem(), "Algorithme de Prim")){
+            if(Objects.equals(comboBox.getSelectedItem(), primChoice)){
                 PrimModel modelPrim = new PrimModel();
                 PrimView viewPrim = new PrimView(modelPrim);
                 JFrame frame = new JFrame();
@@ -53,7 +65,7 @@ public class MenuController {
                 frame.add(viewPrim);
                 viewPrim.requestFocus();
                 PrimController controller = new PrimController(modelPrim, viewPrim,frame);
-            }else if (Objects.equals(comboBox.getSelectedItem(),"Algorithme BSP")){
+            }else if (Objects.equals(comboBox.getSelectedItem(), bspChoice)){
                 BSPModel modelBSP = new BSPModel();
                 BSPView viewBSP = new BSPView(modelBSP);
                 JFrame frame = new JFrame();
@@ -67,7 +79,7 @@ public class MenuController {
             }
         });
 
-        JButton ExitButton = new JButton("Quitter");
+        JButton ExitButton = new JButton(exitTextButton);
         ExitButton.addActionListener(e -> {
             System.exit(0);
         });
