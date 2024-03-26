@@ -12,4 +12,13 @@
         <width>200</width>
         <height>30</height>
     </combo>
+    <bsp>
+        <strokeWidth>10</strokeWidth>
+        <entityWidth>20</entityWidth>
+        <entityHeight>20</entityHeight>
+    </bsp>
+    <prim>
+        <entityWidth>5</entityWidth>
+        <entityHeight>5</entityHeight>
+    </prim>
 </config>

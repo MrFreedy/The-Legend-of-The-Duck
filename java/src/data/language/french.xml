@@ -18,6 +18,7 @@
     <error>
         <getKey>Vous avez déjà la clé !</getKey>
         <fightBoss>Vous devez obtenir la clé avant de combattre le boss final !</fightBoss>
+        <alreadyFight>Vous avez déjà combattu le boss final !</alreadyFight>
         <finishLevel>Vous devez combattre le boss final avant de terminer le niveau !</finishLevel>
         <answer>Dommage ! Vous avez perdu !</answer>
     </error>

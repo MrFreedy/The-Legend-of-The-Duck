@@ -8,10 +8,19 @@ import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 import java.io.File;
 
+/**
+ * The XMLReader class represents a utility class for reading XML files.
+ */
 public class XMLReader {
+    /** The Document instance representing the XML file. */
     private Document doc;
 
-    public XMLReader(String filePath) {
+    /**
+     * Constructs a new XMLReader instance for reading the specified XML file.
+     *
+     * @param filePath The path to the XML file to be read.
+     */
+    public XMLReader(final String filePath) {
         try {
             File inputFile = new File(filePath);
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -23,7 +32,13 @@ public class XMLReader {
         }
     }
 
-    public String getValue(String tagName) {
+    /**
+     * Retrieves the value of the specified tag name from the XML file.
+     *
+     * @param tagName The name of the tag to retrieve the value from.
+     * @return The value of the specified tag name.
+     */
+    public String getValue(final String tagName) {
         NodeList nList = doc.getElementsByTagName(tagName);
         Node node = nList.item(0);
         if (node.getNodeType() == Node.ELEMENT_NODE) {
@@ -33,7 +48,14 @@ public class XMLReader {
         return null;
     }
 
-    public String getValue(String parentTagName, String childTagName) {
+    /**
+     * Retrieves the value of the specified child tag name from the specified parent tag name in the XML file.
+     *
+     * @param parentTagName The name of the parent tag to retrieve the value from.
+     * @param childTagName The name of the child tag to retrieve the value from.
+     * @return The value of the specified child tag name from the specified parent tag name.
+     */
+    public String getValue(final String parentTagName, final String childTagName) {
         NodeList nList = doc.getElementsByTagName(parentTagName);
         for (int i = 0; i < nList.getLength(); i++) {
             Node node = nList.item(i);

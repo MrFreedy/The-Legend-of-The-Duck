@@ -7,12 +7,24 @@ import org.azal.view.MenuView;
 
 import javax.swing.JFrame;
 
-public class Main {
-    public static void main(String[] args) {
+public final class Main {
+    /**
+     * Private constructor to prevent instantiation of the Main class.
+     */
+    private Main() {
+        throw new UnsupportedOperationException("Utility class");
+    }
+
+    /**
+     * The main method of the application.
+     *
+     * @param args The command-line arguments.
+     */
+    public static void main(final String[] args) {
         XMLReader xmlReaderConfig = new XMLReader("src/data/config.xml");
-        final int width = Integer.parseInt(xmlReaderConfig.getValue("menu","width"));
-        final int height = Integer.parseInt(xmlReaderConfig.getValue("menu","height"));
-        
+        final int width = Integer.parseInt(xmlReaderConfig.getValue("menu", "width"));
+        final int height = Integer.parseInt(xmlReaderConfig.getValue("menu", "height"));
+
         MenuModel model = new MenuModel();
         MenuView view = new MenuView(model);
         MenuController controller = new MenuController(model, view);

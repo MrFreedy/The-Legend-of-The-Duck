@@ -13,9 +13,14 @@ public class MenuView extends JPanel {
     /** The MenuModel instance associated with this view for managing menu-related data and logic. */
     private MenuModel model;
 
-    public MenuView(MenuModel model) {
+    /**
+     * Constructs a new MenuView instance associated with the specified MenuModel.
+     *
+     * @param model The MenuModel instance associated with this view for managing menu-related data and logic.
+     */
+    public MenuView(final MenuModel model) {
         super();
-        this.model=model;
+        this.model = model;
         setBackground(Color.WHITE);
     }
 }
