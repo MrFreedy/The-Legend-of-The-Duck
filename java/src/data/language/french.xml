@@ -1,0 +1,31 @@
+<french>
+    <menu>
+        <question>Quel type d'algorithme de génération souhaitez-vous utiliser ?</question>
+        <prim>Algorithme de Prim</prim>
+        <bsp>Algorithme BSP</bsp>
+    </menu>
+    <enigma>
+        <title>Enigme</title>
+    </enigma>
+    <button>
+        <regenerate>Regénérer</regenerate>
+        <exit>Quitter</exit>
+        <getKey>Obtenir la clé</getKey>
+        <fight>Combattre</fight>
+        <finish>Finir le niveau</finish>
+        <confirm>Valider</confirm>
+    </button>
+    <error>
+        <getKey>Vous avez déjà la clé !</getKey>
+        <fightBoss>Vous devez obtenir la clé avant de combattre le boss final !</fightBoss>
+        <finishLevel>Vous devez combattre le boss final avant de terminer le niveau !</finishLevel>
+        <answer>Dommage ! Vous avez perdu !</answer>
+    </error>
+    <success>
+        <getKey>Vous avez ramassé la clé</getKey>
+        <fightBoss>Vous avez obtenu la clé ! Vous pouvez maintenant combattre le boss final !</fightBoss>
+        <finishLevel>Vous avez vaincu le boss final ! Dirigez-vous vers la sortie</finishLevel>
+        <finish>Félicitations, vous avez terminé le niveau !</finish>
+        <answer>Bravo ! Vous avez vaincu le boss final !</answer>
+    </success>
+</french>
