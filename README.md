@@ -1,8 +1,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  <a href="https://github.com/MrFreedy/The-Legend-of-The-Duck">
+    <img src="images/logo.png" alt="Logo" width="577" height="433">
   </a>
 
   <h3 align="center">The Legend of The Duck</h3>
@@ -52,7 +52,6 @@
     </li>
     <li><a href="#outils">Outils de conception</a></li>
     <li><a href="#bonus">Fonctionnalités bonus ajoutés</a></li>
-    <li><a href="#license">License</a></li>
     <li><a href="#bilan">Conclusion</a></li>
     <li><a href="#feedback-projet">Feedback du projet</a></li>
   </ol>
@@ -61,8 +60,6 @@
 
 
 # Présentation du projet
-
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
 
 Le but de ce projet était de concevoir de A à Z un générateur de donjon de façon PROCEDURAL.
 
@@ -87,18 +84,7 @@ La seule contrainte à laquelle nous avons été soumis est Java. En effet, le c
 
 Cet contrainte d'utilisation ne nous a pas gêné même si d'autres langages auraient plus adaptés afin de créer un jeu vidéo tel que C#.
 
-## Outils de conception
-
-Nous allons vous présenter les différents outils de conception que nous avons décidé d'utiliser afin de réaliser ce projet.
-
-* [![Java][Java]][Java-url]
-* [![Gradle]][Gradle-url]
-* Checksyle
-* Github Project
-* XML
-
 <p align="right">(<a href="#readme-top">Retour au sommaire</a>)</p>
-
 
 
 # Génération procédural
@@ -110,84 +96,118 @@ La génération procédurale est une méthode informatique pour créer du conten
 Sur ce projet, nous allons nous focaliser sur son utilisation dans le monde du jeu vidéo. En effet, comme évoqué plutôt la génération procédurale est rare dans ce domaine mais elle existe :
 <div align="center">
 <a href="https://fr.wikipedia.org/wiki/Minecraft">
-    <img src="images/minecraft.png" alt="minecraft" width="80" height="80">
+    <img src="images/minecraft.png" alt="minecraft" width="512" height="250">
   </a>
 <a href="https://fr.wikipedia.org/wiki/Lethal_Company">
-    <img src="images/lethal.jpg" alt="lethal" width="80" height="80">
+    <img src="images/lethal.jpg" alt="lethal" width="460" height="215">
   </a>
   <a href="https://fr.wikipedia.org/wiki/Spore_(jeu_vidéo)">
-    <img src="images/spore.jpg" alt="spore" width="80" height="80">
+    <img src="images/spore.jpg" alt="spore" width="500" height="750">
   </a>
 </div
 
 ## Prim
 
 ### Prim c'est quoi ?
-L'algorithme de Prim est une technique utilisée en génération procédurale pour créer des arbres de recouvrement minimum dans un graphe. En termes simples, cela signifie qu'il trouve un ensemble d'arêtes qui connectent tous les nœuds du graphe tout en minimisant la somme de leurs poids. En d'autres termes, il aide à créer un réseau de connexion efficace entre différentes parties d'un monde généré de manière procédurale, comme des routes dans un jeu vidéo ou des chemins dans une carte.
+L'algorithme de Prim est une technique utilisée en génération procédurale pour créer des arbres de recouvrement minimum dans un graphe. En termes simples, cela signifie qu'il trouve un ensemble d'arêtes qui connectent tous les nœuds du graphe tout en minimisant la somme de leurs poids. En d'autres termes, il aide à créer un réseau de connexion efficace entre différentes parties d'un monde généré de manière procédurale, comme des routes dans un jeu vidéo ou des chemins dans une carte.<br>
+
+![PrimAlgDemo](https://github.com/MrFreedy/The-Legend-of-The-Duck/assets/74242616/de4a6bb4-70a7-48cc-bfc8-e54a496c96e8)
+
+
 
 ### Notre utilisation
+Nous avons opté pour l'utilisation de l'algorithme de Prim dans notre projet de création de donjon pour plusieurs raisons essentielles. Tout d'abord, l'algorithme de Prim est reconnu pour sa capacité à générer des structures de données optimales, ce qui est particulièrement pertinent dans la conception de donjons où la disposition des salles et des couloirs peut avoir un impact significatif sur l'expérience du joueur.
+
+En choisissant l'algorithme de Prim, nous nous assurons de créer un réseau de salles et de passages qui maximise l'accessibilité tout en minimisant les distances parcourues. Cela garantit que notre donjon offre un niveau de défi approprié et une exploration fluide pour les joueurs.
+
+De plus, la simplicité de l'algorithme de Prim facilite son intégration dans notre code de génération procédurale. Nous pouvons le personnaliser selon nos besoins spécifiques, que ce soit pour introduire des éléments de variation dans la conception des donjons ou pour ajuster la difficulté en fonction des préférences des joueurs.
+
+En résumé, l'algorithme de Prim offre une approche éprouvée et efficace pour la génération procédurale de donjons, garantissant ainsi une expérience de jeu immersive et stimulante pour les joueurs. Son utilisation constitue un choix stratégique qui contribue à la qualité et à la jouabilité de notre projet.
 
 ### Alors Prim c'est bien ?
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+L'algorithme de Prim est un choix judicieux pour la génération procédurale de donjons. Sa capacité à créer des structures de données optimales en minimisant les distances parcourues tout en maximisant l'accessibilité en fait un outil précieux pour concevoir des environnements de jeu complexes et engageants. Sa simplicité d'implémentation et sa flexibilité permettent également une adaptation facile aux besoins spécifiques du projet. En résumé, Prim offre une solution efficace et éprouvée pour la génération de donjons, offrant une expérience de jeu variée et captivante pour les joueurs.
+
+Toutefois, il existe différents inconvénients comme la prévisibilité. En effet, l'algorithme de Prim suit une approche déterministe, les donjons générés peuvent parfois sembler prévisibles pour les joueurs expérimentés. Cela peut réduire la surprise et l'excitation liées à l'exploration. et sera donc corrélé à un autre inconvénient, le manque de variété. En raison de sa nature algorithmique, l'algorithme de Prim peut produire des donjons qui partagent des similitudes structurelles, ce qui peut entraîner une sensation de répétitivité dans le gameplay.
 
 ## BSP
 ### BSP c'est quoi ?
+La génération par BSP (Binary Space Partitioning) est une méthode informatique pour créer des environnements en divisant répétitivement des espaces en deux parties, généralement de manière binaire, jusqu'à ce que des conditions spécifiques soient satisfaites. Cela permet de créer des structures de manière modulaire et efficace, souvent utilisée pour générer des niveaux de jeux vidéo ou des cartes en 3D. 
 
+![Csganim](https://github.com/MrFreedy/The-Legend-of-The-Duck/assets/74242616/d25d2cec-601a-41dc-868a-e70a7eec4f86)
+
+
+
+De célèbres vieux jeux vidéos utilisent cette méthode : 
+
+<div align="center">
+<a href="https://en.wikipedia.org/wiki/Half-Life_(video_game)">
+    <img src="images/halflife.jpg" alt="halflife" width="616" height="353">
+  </a>
+<a href="https://en.wikipedia.org/wiki/Doom_(1993_video_game)">
+    <img src="images/doom.jpeg" alt="doom" width="640" height="360">
+  </a>
+</div
+	
 ### Notre utilisation
+Nous avons décidé d'utiliser l'algorithme BSP (Binary Space Partitioning) car il offre une méthode efficace pour générer des donjons complexes en divisant l'espace du donjon en sous-ensembles de manière récursive. Cette approche permet de créer des donjons variés et détaillés de manière cohérente, offrant une expérience de jeu riche et immersive pour les joueurs. En utilisant l'algorithme BSP, nous pouvons garantir la génération de donjons modulaires et dynamiques, ce qui est essentiel pour maintenir l'intérêt des joueurs sur la durée. Chaque exploration offre une nouvelle expérience, offrant ainsi une rejouabilité importante.
 
+En résumé, l'utilisation de l'algorithme BSP dans notre projet nous permet de garantir des donjons variés, dynamiques et adaptés à l'expérience de jeu que nous souhaitons offrir aux joueurs. Son utilisation contribuera à créer une expérience immersive et captivante, où chaque exploration réserve de nouvelles surprises et défis.
 ### Alors BSP c'est bien ?
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+L'utilisation de l'algorithme BSP pour la création de niveaux de donjon dans notre jeu présente des avantages et des inconvénients à considérer. 
+En ce qui concerne les avantages, BSP nous permet de générer des donjons avec une structure complexe offrant une variété d'itinéraires, de salles et de passages, ce qui rend l'exploration pour les joueurs plus captivante. De plus, cette approche permet une optimisation des performances en réduisant la charge graphique grâce à la minimisation du nombre de surfaces visibles à tout moment, améliorant ainsi la fluidité du jeu. 
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/your_username_/Project-Name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
+En outre, BSP offre une adaptabilité dynamique en permettant la génération de niveaux en temps réel, ce qui est particulièrement utile pour un jeu de donjon où les environnements doivent être générés de manière procédurale. 
+
+Cependant, l'utilisation de BSP peut également présenter des inconvénients, notamment un potentiel manque de variété dans les niveaux générés, une complexité de conception qui peut poser des défis aux développeurs et la possibilité de blocages ou de problèmes de conception qui nécessitent une gestion supplémentaire pour garantir une expérience de jeu fluide. 
+
+En résumé, bien que BSP offre des avantages significatifs, il est important d'évaluer attentivement ses inconvénients potentiels et de considérer les besoins spécifiques du projet pour déterminer si c'est la meilleure approche pour notre jeu de donjon procédural.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
+# Outils de conception
 
-<!-- USAGE EXAMPLES -->
-## Usage
+Pour réaliser ce projet, nous avons utiliser différents outils/langages :
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+* [![Java][Java]][Java-url]<br>
+  Ce langage nous a été imposé<br>
+  
+* [![Gradle]][Gradle-url]<br>
+  Nous a permis de gérer<br>
+  
+* Checksyle<br>
+  Nous a permis de fixer une norme d'écriture au sein de l'équipe.<br>
+  
+* Github Project<br>
+  Nous a permis de nous répartir les tâches et de réaliser des reviews de code.<br>
+  
+* XML<br>
+  Nous a permis de stocker certains paramètres du jeu<br>
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+<p align="right">(<a href="#readme-top">Retour au sommaire</a>)</p>
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+#Fonctionnalités bonus ajoutés
+Dans le cadre de notre projet, nous avons pris l'initiative d'ajouter trois fonctionnalités visant à rendre l'expérience plus accessible et adaptable aux utilisateurs :
 
+* Paramètres personnalisables :
+  Nous avons intégré un système de paramètres flexibles, permettant aux utilisateurs de personnaliser divers aspects du jeu selon leurs préférences. Ces paramètres se situent dans
+  ```sh
+  java/src/data/config.xml
+   ```
+  
+* Système de langues multiples : Pour accueillir un public plus large, nous avons implémenter la possibilité de changer la langue du jeu en offrant la possibilité de modifier les textes. Pour cela, l'utilisateur devra dans un premier temps modifier la langue dans son fichier ```config.xml``` et ensuite ajouter son propre fichier langue respectant celui de base : 
+```sh
+java/src/data/language/french.xml # celui de base
+java/src/data/language/[Votre langue].xml # votre propre fichier respectant la même structure que french.xml
+   ```
 
+* Enigmes personnalisables : Nous avons également implémenté un système d'énigmes modifiables à souhait, offrant aux utilisateurs la possibilité de créer, modifier ou personnaliser des énigmes selon leurs préférences. Cela permet une expérience de jeu plus interactive et permet aux joueurs de s'engager davantage avec le contenu du jeu. Pour cela, il suffit de modifier en respectant la norme d'écriture :
+  ```sh
+  java/src/data/enigmas.txt 
+  ```
 
-<!-- ROADMAP -->
-## Roadmap
-
-- [x] Add Changelog
-- [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-    - [ ] Chinese
-    - [ ] Spanish
-
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
+En intégrant ces fonctionnalités, nous visons à offrir une expérience de jeu inclusive et personnalisable, répondant aux besoins et aux préférences diversifiés de notre public cible.
 
 <!-- CONTRIBUTING -->
 ## Contributing
@@ -206,79 +226,42 @@ Don't forget to give the project a star! Thanks again!
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
+# Bilan
 
-<!-- LICENSE -->
-## License
+Le projet "The Legend of The Duck" a été une expérience enrichissante et gratifiante pour toute l'équipe d'AZAL Corp. Nous avons réussi à créer un générateur de donjons procédural utilisant deux approches différentes : l'algorithme de Prim et la génération par BSP. Cette diversité nous a permis d'explorer les forces et les faiblesses de chaque méthode, tout en offrant une expérience de jeu variée aux utilisateurs.
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+Les fonctionnalités principales du projet, telles que la génération aléatoire de la carte du donjon, la création d'énigmes et la gestion des objets, ont été implémentées avec succès. De plus, nous avons ajouté des fonctionnalités bonus, telles que les paramètres personnalisables, le système de langues multiples et les énigmes modifiables à souhait, pour rendre le jeu plus accessible et adaptable aux différents utilisateurs.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+L'utilisation d'outils de gestion de projet tels que GitHub Project et les normes de développement telles que Checkstyle ont grandement facilité la collaboration au sein de l'équipe et ont contribué à maintenir un code propre et bien structuré.
 
-
-
-<!-- CONTACT -->
-## Contact
-
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
-
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+En termes de contraintes, l'exigence d'utiliser exclusivement Java comme langage de programmation a été respectée, bien que d'autres langages comme C# auraient pu être plus adaptés pour ce type de projet de jeu vidéo.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+# Feedback
+
+Dans l'ensemble, le projet a été une réussite, mais il reste des domaines où des améliorations pourraient être apportées. 
+
+## Points positifs :
+- La diversité des fonctionnalités et des approches de génération procédurale a enrichi l'expérience de jeu.
+- L'implémentation des fonctionnalités bonus a rendu le jeu plus personnalisable et accessible à un plus large public.
+- La collaboration au sein de l'équipe a été efficace grâce à l'utilisation d'outils de gestion de projet.
+
+## Points à améliorer :
+- Une plus grande variété dans la génération des donjons pourrait être introduite pour éviter la répétitivité.
+- Une documentation plus détaillée et des instructions d'utilisation pourraient être fournies pour guider les utilisateurs dans la personnalisation du jeu.
+- Une optimisation des performances pourrait être envisagée pour garantir une expérience de jeu fluide sur différents types de plates-formes.
+
+En conclusion, le projet "The Legend of The Duck" a été une expérience enrichissante qui nous a permis d'explorer les techniques de génération procédurale et de créer un jeu de donjon captivant. Avec quelques ajustements et améliorations, nous sommes convaincus que le jeu pourrait offrir une expérience encore plus immersive et engageante pour les joueurs.
 
 
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
-
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
-* [Malven's Grid Cheatsheet](https://grid.malven.co/)
-* [Img Shields](https://shields.io)
-* [GitHub Pages](https://pages.github.com)
-* [Font Awesome](https://fontawesome.com)
-* [React Icons](https://react-icons.github.io/react-icons/search)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
-[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
-[forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
-[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
-[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
-[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
-[product-screenshot]: images/screenshot.png
-
-
-
 [Java]: https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white
 [Gradle]: https://img.shields.io/badge/Gradle-02303A?style=for-the-badge&logo=Gradle&logoColor=white
 [Gradle-url]: https://gradle.org
 [Java-url]: https://www.java.com/fr/
-
-[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
-[React-url]: https://reactjs.org/
-[Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
-[Vue-url]: https://vuejs.org/
-[Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
-[Angular-url]: https://angular.io/
-[Svelte.dev]: https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte&logoColor=FF3E00
-[Svelte-url]: https://svelte.dev/
-[Laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
-[Laravel-url]: https://laravel.com
-[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
-[Bootstrap-url]: https://getbootstrap.com
-[JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
-[JQuery-url]: https://jquery.com 
