@@ -12,77 +12,58 @@ import java.util.Random;
 public class BSPModel {
     static final int WIDTH = 800, HEIGHT = 800;
     private List<Rectangle> partitions;
-    private List<Rectangle> doors;
     private static final int DOOR_SIZE = 7;
     private Point bossPosition;
     private Point keyPosition;
     private Point spawnPosition;
+    private boolean isGettingKey = false;
+    private boolean isFight = false;
+    private boolean isRegenerating = false;
     private final Color roomColor = Color.BLUE;
     private final Color corridorColor = Color.RED;
     private final Color doorColor = Color.GREEN;
     private Door keyDoor;
     private Door playerDoor;
-
+    private Door bossDoor;
+    private boolean isBossDead = false;
+    private Color spawnColor = Color.GREEN;
+    private Color keyColor = Color.ORANGE;
+    private Color bossColor = Color.RED;
     private HashMap<Room, Door> rooms;
     public BSPModel(){
-        doors = new ArrayList<>();
         rooms = new HashMap<>();
         partitions = new ArrayList<>();
         partitions.add(new Rectangle(60, 60, WIDTH - 120, HEIGHT - 120));
         splitPartitions(partitions, 5);
         createCorridors(partitions);
 
-
-
-        Rectangle bossRoom = partitions.get(new Random().nextInt(partitions.size() / 2));
-        bossPosition = new Point(
-                bossRoom.x + bossRoom.width / 2,
-                bossRoom.y + bossRoom.height / 2);
+        Rectangle bossRoom;
         Rectangle keyRoom = partitions.get(new Random().nextInt(partitions.size()/2));
-        keyPosition = new Point(
-                keyRoom.x + keyRoom.width / 2,
-                keyRoom.y + keyRoom.height / 2);
         Rectangle spawnRoom = partitions.get(new Random().nextInt(partitions.size()/2));
-        spawnPosition = new Point(
-                spawnRoom.x + spawnRoom.width / 2,
-                spawnRoom.y + spawnRoom.height / 2);
 
-        addDoorsToRooms(partitions, keyRoom, spawnRoom);
+        do {
+            bossRoom = partitions.get(new Random().nextInt(partitions.size() / 2));
+        } while (bossRoom.equals(keyRoom) || bossRoom.equals(spawnRoom));
 
-    }
-
-    public void generateNewBSP(){
-        partitions.clear();
-        doors.clear();
-        partitions.add(new Rectangle(60,50,WIDTH-120,HEIGHT-120));
-
-        splitPartitions(partitions, 5);
-        createCorridors(partitions);
-
-
-
-        Rectangle bossRoom = partitions.get(new Random().nextInt(partitions.size() / 2));
         bossPosition = new Point(
                 bossRoom.x + bossRoom.width / 2,
-                bossRoom.y + bossRoom.height / 2);
-
-        Rectangle keyRoom;
-        do {
-            keyRoom = partitions.get(new Random().nextInt(partitions.size() / 2));
-        } while (keyRoom == bossRoom);
-
+                bossRoom.y + bossRoom.height / 2
+        );
         keyPosition = new Point(
                 keyRoom.x + keyRoom.width / 2,
                 keyRoom.y + keyRoom.height / 2);
-
-        Rectangle spawnRoom;
-        do {
-            spawnRoom = partitions.get(new Random().nextInt(partitions.size() / 2));
-        } while (spawnRoom == bossRoom || spawnRoom == keyRoom);
         spawnPosition = new Point(
                 spawnRoom.x + spawnRoom.width / 2,
                 spawnRoom.y + spawnRoom.height / 2);
-        addDoorsToRooms(partitions, keyRoom, spawnRoom);
+
+        if (spawnPosition.equals(keyPosition)) {
+            spawnPosition = new Point(
+                    spawnRoom.x + spawnRoom.width / 2 + 50,
+                    spawnRoom.y + spawnRoom.height / 2 + 50);
+        }
+
+        addDoorsToRooms(partitions, keyRoom, spawnRoom, bossRoom);
+
     }
 
     private void splitPartitions(List<Rectangle> partitions, int maxRooms) {
@@ -136,7 +117,7 @@ public class BSPModel {
         }
     }
 
-    private void addDoorsToRooms(List<Rectangle> partitions, Rectangle keyRoom, Rectangle spawnRoom) {
+    private void addDoorsToRooms(List<Rectangle> partitions, Rectangle keyRoom, Rectangle spawnRoom, Rectangle bossRoom) {
         Random r = new Random();
         rooms = new HashMap<>();
         for (int i = 0; i < partitions.size() / 2; i++) {
@@ -171,6 +152,8 @@ public class BSPModel {
                 keyDoor = door;
             } else if (room.getRectangle().equals(spawnRoom)) {
                 playerDoor = door;
+            } else if (room.getRectangle().equals(bossRoom)) {
+                bossDoor = door;
             }
         }
     }
@@ -188,7 +171,7 @@ public class BSPModel {
         return partitions;
     }
 
-    public HashMap<Room, Door> getDoors() {
+    public HashMap<Room, Door> getRooms() {
         return rooms;
     }
 
@@ -223,5 +206,63 @@ public class BSPModel {
         return playerDoor;
     }
 
+    public Door getBossDoor() {
+        return bossDoor;
+    }
+
+    public boolean isGettingKey() {
+        return isGettingKey;
+    }
+
+    public void setGettingKey(boolean gettingKey) {
+        isGettingKey = gettingKey;
+    }
+
+    public boolean isFight() {
+        return isFight;
+    }
+
+    public void setFight(boolean fight) {
+        isFight = fight;
+    }
+
+    public boolean isRegenerating() {
+        return isRegenerating;
+    }
+
+    public void setRegenerating(boolean regenerating) {
+        isRegenerating = regenerating;
+    }
+
+    public boolean isBossDead() {
+        return isBossDead;
+    }
+
+    public void setBossDead(boolean bossDead) {
+        isBossDead = bossDead;
+    }
+    public Color getSpawnColor() {
+        return spawnColor;
+    }
+
+    public void setSpawnColor(Color spawnColor) {
+        this.spawnColor = spawnColor;
+    }
+
+    public Color getKeyColor() {
+        return keyColor;
+    }
+
+    public void setKeyColor(Color keyColor) {
+        this.keyColor = keyColor;
+    }
+
+    public Color getBossColor() {
+        return bossColor;
+    }
+
+    public void setBossColor(Color bossColor) {
+        this.bossColor = bossColor;
+    }
 
 }

@@ -73,6 +73,7 @@ public class PrimController {
         final String errorBossFightMessage = xmlReaderMessages.getValue("error", "fightBoss");
         final String alreadyFightMessage = xmlReaderMessages.getValue("error", "alreadyFight");
         final String successFinishMessage = xmlReaderMessages.getValue("success", "finish");
+        final String errorFinishMessage = xmlReaderMessages.getValue("error", "finish");
 
 
         generateButton = new JButton(regenerateTextButton);
@@ -131,7 +132,7 @@ public class PrimController {
                 JOptionPane.showMessageDialog(null, successFinishMessage);
                 frame.dispose();
             } else {
-                JOptionPane.showMessageDialog(null, "");
+                JOptionPane.showMessageDialog(null, errorFinishMessage);
             }
         });
 

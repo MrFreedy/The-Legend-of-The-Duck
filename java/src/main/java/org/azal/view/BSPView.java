@@ -47,6 +47,28 @@ public class BSPView extends JPanel {
      */
     @Override
     protected void paintComponent(final Graphics g) {
+        if (model.isGettingKey()) {
+            model.setSpawnColor(Color.BLUE);
+            model.setKeyColor(Color.GREEN);
+            model.setGettingKey(false);
+
+            drawRoomsAndDoors(g,model.getBossColor(),model.getKeyColor());
+        } else if (model.isFight()) {
+            model.setKeyColor(Color.BLUE);
+            model.setBossColor(Color.GREEN);
+            model.setFight(false);
+
+            drawRoomsAndDoors(g,model.getBossColor(),model.getKeyColor());
+        } else {
+            drawRoomsAndDoors(g);
+        }
+    }
+
+    /**
+     * Draws the rooms and doors on the graphical user interface.
+     * @param g The Graphics object used for rendering the visualization.
+     */
+    private void drawRoomsAndDoors(final Graphics g) {
         for (int i = 0; i < model.getPartitions().size() / 2; i++) {
             Graphics2D g2 = (Graphics2D) g;
             Rectangle corridor = model.getPartitions().get(i);
@@ -62,7 +84,7 @@ public class BSPView extends JPanel {
             g.fillRect(room.x, room.y, room.width, room.height);
         }
 
-        for (Map.Entry<Room, Door> entry : model.getDoors().entrySet()) {
+        for (Map.Entry<Room, Door> entry : model.getRooms().entrySet()) {
             Door door = entry.getValue();
             Rectangle doorRectangle = door.getRectangle();
 
@@ -75,13 +97,55 @@ public class BSPView extends JPanel {
             g.fillRect(doorRectangle.x, doorRectangle.y, doorRectangle.width, doorRectangle.height);
         }
 
-        g.setColor(Color.RED);
+        g.setColor(model.getBossColor());
         g.fillOval(model.getBossPosition().x, model.getBossPosition().y, entityWidth, entityHeight);
 
-        g.setColor(Color.ORANGE);
+        g.setColor(model.getKeyColor());
         g.fillOval(model.getKeyPosition().x, model.getKeyPosition().y, entityWidth, entityHeight);
 
-        g.setColor(Color.GREEN);
+        g.setColor(model.getSpawnColor());
         g.fillOval(model.getSpawnPosition().x, model.getSpawnPosition().y, entityWidth, entityHeight);
     }
+
+    /**
+     * Draws the rooms and doors on the graphical user interface.
+     * @param g The Graphics object used for rendering the visualization.
+     * @param bossColor The color of the boss entity.
+     * @param keyColor The color of the key entity.
+     */
+    private void drawRoomsAndDoors(final Graphics g, final Color bossColor, final Color keyColor) {
+        for (int i = 0; i < model.getPartitions().size() / 2; i++) {
+            Graphics2D g2 = (Graphics2D) g;
+            Rectangle corridor = model.getPartitions().get(i);
+            g.setColor(model.getCorridorColor());
+            g.fillRect(corridor.x, corridor.y, corridor.width, corridor.height);
+            g2.setColor(Color.BLACK);
+            g2.setStroke(new BasicStroke(strokeWidth));
+            g2.drawRect(corridor.x, corridor.y, corridor.width, corridor.height);
+        }
+        for (int i = model.getPartitions().size() / 2; i < model.getPartitions().size(); i++) {
+            Rectangle room = model.getPartitions().get(i);
+            g.setColor(model.getRoomColor());
+            g.fillRect(room.x, room.y, room.width, room.height);
+        }
+
+        for (Map.Entry<Room, Door> entry : model.getRooms().entrySet()) {
+            Door door = entry.getValue();
+            Rectangle doorRectangle = door.getRectangle();
+
+            if (door.equals(model.getKeyDoor()) || door.equals(model.getBossDoor())) {
+                g.setColor(Color.GREEN);
+            }
+
+            g.fillRect(doorRectangle.x, doorRectangle.y, doorRectangle.width, doorRectangle.height);
+        }
+
+        g.setColor(bossColor);
+        g.fillOval(model.getBossPosition().x, model.getBossPosition().y, entityWidth, entityHeight);
+
+        g.setColor(keyColor);
+        g.fillOval(model.getKeyPosition().x, model.getKeyPosition().y, entityWidth, entityHeight);
+
+    }
 }
+
