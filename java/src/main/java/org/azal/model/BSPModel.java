@@ -3,33 +3,63 @@ package org.azal.model;
 import org.azal.entities.Door;
 import org.azal.entities.Room;
 
-import java.awt.*;
+import java.awt.Point;
+import java.awt.Color;
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * The BSPModel class represents the model component of the Binary Space Partitioning (BSP) algorithm in the
+ * Model-View-Controller (MVC) pattern. It is responsible for managing the data and business logic of the BSP
+ * algorithm, including the generation of rooms, corridors, and doors, as well as the placement of the player,
+ * key, and boss entities within the generated map.
+ */
 public class BSPModel {
+    /** The width of the map. */
     static final int WIDTH = 800, HEIGHT = 800;
+    /** The list of partitions in the map. */
     private List<Rectangle> partitions;
+    /** The size of the door. */
     private static final int DOOR_SIZE = 7;
+    /** The position of the boss entity. */
     private Point bossPosition;
+    /** The position of the key entity. */
     private Point keyPosition;
+    /** The position of the player entity. */
     private Point spawnPosition;
+    /** The flag indicating whether the player is getting the key. */
     private boolean isGettingKey = false;
+    /** The flag indicating whether the player is fighting the boss. */
     private boolean isFight = false;
-    private boolean isRegenerating = false;
+    /** The color of the room. */
     private final Color roomColor = Color.BLUE;
-    private final Color corridorColor = Color.RED;
+    /** The color of the wall. */
+    private final Color wallColor = Color.RED;
+    /** The color of the door. */
     private final Color doorColor = Color.GREEN;
+    /** The door for the key entity. */
     private Door keyDoor;
+    /** The door for the player entity. */
     private Door playerDoor;
+    /** The door for the boss entity. */
     private Door bossDoor;
+    /** The flag indicating whether the boss entity is dead. */
     private boolean isBossDead = false;
+    /** The color of the spawn entity. */
     private Color spawnColor = Color.GREEN;
+    /** The color of the key entity. */
     private Color keyColor = Color.ORANGE;
+    /** The color of the boss entity. */
     private Color bossColor = Color.RED;
+    /** The map of rooms and doors. */
     private HashMap<Room, Door> rooms;
+
+    /**
+     * Constructs a new BSPModel instance for managing the data and business logic of the BSP algorithm.
+     */
     public BSPModel(){
         rooms = new HashMap<>();
         partitions = new ArrayList<>();
@@ -65,7 +95,11 @@ public class BSPModel {
         addDoorsToRooms(partitions, keyRoom, spawnRoom, bossRoom);
 
     }
-
+    /**
+     * Splits the partitions in the map into smaller partitions.
+     * @param partitions The list of partitions in the map.
+     * @param maxRooms The maximum number of rooms to generate.
+     */
     private void splitPartitions(List<Rectangle> partitions, int maxRooms) {
         List<Rectangle> newPartitions = new ArrayList<>();
 
@@ -108,6 +142,10 @@ public class BSPModel {
         }
     }
 
+    /**
+     * Creates corridors between the rooms in the map.
+     * @param partitions The list of partitions in the map.
+     */
     private void createCorridors(List<Rectangle> partitions) {
         List<Rectangle> originalPartitions = new ArrayList<>(partitions);
         for (Rectangle partition : originalPartitions) {
@@ -117,6 +155,13 @@ public class BSPModel {
         }
     }
 
+    /**
+     * Adds doors to the rooms in the map.
+     * @param partitions The list of partitions in the map.
+     * @param keyRoom The room containing the key entity.
+     * @param spawnRoom The room containing the player entity.
+     * @param bossRoom The room containing the boss entity.
+     */
     private void addDoorsToRooms(List<Rectangle> partitions, Rectangle keyRoom, Rectangle spawnRoom, Rectangle bossRoom) {
         Random r = new Random();
         rooms = new HashMap<>();
@@ -157,8 +202,13 @@ public class BSPModel {
             }
         }
     }
-
-    private int randomWithRange(int min, int max) {
+    /**
+     * Generates a random number within the specified range.
+     * @param min The minimum value of the range.
+     * @param max The maximum value of the range.
+     * @return The random number generated within the specified range.
+     */
+    private int randomWithRange(final int min, final int max) {
         if (min >= max) {
             return max;
         } else {
@@ -167,101 +217,168 @@ public class BSPModel {
         }
     }
 
+    /**
+     * Returns the list of partitions in the map.
+     * @return The list of partitions in the map.
+     */
     public List<Rectangle> getPartitions() {
         return partitions;
     }
-
+/**
+     * Returns the map of rooms and doors.
+     * @return The map of rooms and doors.
+     */
     public HashMap<Room, Door> getRooms() {
         return rooms;
     }
-
+    /**
+     * Returns the position of the boss entity.
+     * @return The position of the boss entity.
+     */
     public Point getBossPosition() {
         return bossPosition;
     }
-
+    /**
+     * Returns the position of the key entity.
+     * @return The position of the key entity.
+     */
     public Point getKeyPosition() {
         return keyPosition;
     }
-
+    /**
+     * Returns the position of the player entity.
+     * @return The position of the player entity.
+     */
     public Point getSpawnPosition() {
         return spawnPosition;
     }
+    /**
+     * Returns the color of the room.
+     * @return The color of the room.
+     */
     public Color getRoomColor() {
         return roomColor;
     }
-
-    public Color getCorridorColor() {
-        return corridorColor;
+    /**
+     * Returns the color of the wall.
+     * @return The color of the wall.
+     */
+    public Color getWallColor() {
+        return wallColor;
     }
-
+    /**
+     * Returns the color of the door.
+     * @return The color of the door.
+     */
     public Color getDoorColor() {
         return doorColor;
     }
-
+    /**
+     * Returns the door for the key entity.
+     * @return The door for the key entity.
+     */
     public Door getKeyDoor() {
         return keyDoor;
     }
-
+    /**
+     * Returns the door for the player entity.
+     * @return The door for the player entity.
+     */
     public Door getPlayerDoor() {
         return playerDoor;
     }
-
+    /**
+     * Returns the door for the boss entity.
+     * @return The door for the boss entity.
+     */
     public Door getBossDoor() {
         return bossDoor;
     }
-
+    /**
+     * Returns the flag indicating whether the player is getting the key.
+     * @return The flag indicating whether the player is getting the key.
+     */
     public boolean isGettingKey() {
         return isGettingKey;
     }
-
-    public void setGettingKey(boolean gettingKey) {
+    /**
+     * Sets the flag indicating whether the player is getting the key.
+     * @param gettingKey The flag indicating whether the player is getting the key.
+     */
+    public void setGettingKey(final boolean gettingKey) {
         isGettingKey = gettingKey;
     }
-
+    /**
+     * Returns the flag indicating whether the player is fighting the boss.
+     * @return The flag indicating whether the player is fighting the boss.
+     */
     public boolean isFight() {
         return isFight;
     }
-
-    public void setFight(boolean fight) {
+    /**
+     * Sets the flag indicating whether the player is fighting the boss.
+     * @param fight The flag indicating whether the player is fighting the boss.
+     */
+    public void setFight(final boolean fight) {
         isFight = fight;
     }
-
-    public boolean isRegenerating() {
-        return isRegenerating;
-    }
-
-    public void setRegenerating(boolean regenerating) {
-        isRegenerating = regenerating;
-    }
-
+    /**
+     * Returns the flag indicating whether the boss entity is dead.
+     * @return The flag indicating whether the boss entity is dead.
+     */
     public boolean isBossDead() {
         return isBossDead;
     }
-
-    public void setBossDead(boolean bossDead) {
+    /**
+     * Sets the flag indicating whether the boss entity is dead.
+     * @param bossDead The flag indicating whether the boss entity is dead.
+     */
+    public void setBossDead(final boolean bossDead) {
         isBossDead = bossDead;
     }
+    /**
+     * Returns the color of the player entity.
+     * @return The color of the player entity.
+     */
     public Color getSpawnColor() {
         return spawnColor;
     }
-
-    public void setSpawnColor(Color spawnColor) {
+    /**
+     * Sets the color of the player entity.
+     * @param spawnColor The color of the player entity.
+     */
+    public void setSpawnColor(final Color spawnColor) {
         this.spawnColor = spawnColor;
     }
 
+    /**
+     * Returns the color of the key entity.
+     * @return The color of the key entity.
+     */
     public Color getKeyColor() {
         return keyColor;
     }
 
-    public void setKeyColor(Color keyColor) {
+    /**
+     * Sets the color of the key entity.
+     * @param keyColor The color of the key entity.
+     */
+    public void setKeyColor(final Color keyColor) {
         this.keyColor = keyColor;
     }
 
+    /**
+     * Returns the color of the boss entity.
+     * @return The color of the boss entity.
+     */
     public Color getBossColor() {
         return bossColor;
     }
-
-    public void setBossColor(Color bossColor) {
+    /**
+     * Sets the color of the boss entity.
+     * @param bossColor The color of the boss entity.
+     */
+    public void setBossColor(final Color bossColor) {
         this.bossColor = bossColor;
     }
 

@@ -72,7 +72,7 @@ public class BSPView extends JPanel {
         for (int i = 0; i < model.getPartitions().size() / 2; i++) {
             Graphics2D g2 = (Graphics2D) g;
             Rectangle corridor = model.getPartitions().get(i);
-            g.setColor(model.getCorridorColor());
+            g.setColor(model.getWallColor());
             g.fillRect(corridor.x, corridor.y, corridor.width, corridor.height);
             g2.setColor(Color.BLACK);
             g2.setStroke(new BasicStroke(strokeWidth));
@@ -117,7 +117,7 @@ public class BSPView extends JPanel {
         for (int i = 0; i < model.getPartitions().size() / 2; i++) {
             Graphics2D g2 = (Graphics2D) g;
             Rectangle corridor = model.getPartitions().get(i);
-            g.setColor(model.getCorridorColor());
+            g.setColor(model.getWallColor());
             g.fillRect(corridor.x, corridor.y, corridor.width, corridor.height);
             g2.setColor(Color.BLACK);
             g2.setStroke(new BasicStroke(strokeWidth));
