@@ -1,5 +1,7 @@
 package org.azal.view;
 
+import org.azal.entities.Door;
+import org.azal.entities.Room;
 import org.azal.model.BSPModel;
 import org.azal.utils.XMLReader;
 
@@ -9,6 +11,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.BasicStroke;
+import java.util.Map;
 
 public class BSPView extends JPanel {
     /** The BSPModel instance associated with this view for managing BSP algorithm-related data and logic. */
@@ -59,9 +62,17 @@ public class BSPView extends JPanel {
             g.fillRect(room.x, room.y, room.width, room.height);
         }
 
-        for (Rectangle door : model.getDoors()) {
-            g.setColor(model.getDoorColor());
-            g.fillRect(door.x, door.y, door.width, door.height);
+        for (Map.Entry<Room, Door> entry : model.getDoors().entrySet()) {
+            Door door = entry.getValue();
+            Rectangle doorRectangle = door.getRectangle();
+
+            if (door.equals(model.getKeyDoor()) || door.equals(model.getPlayerDoor())) {
+                g.setColor(Color.GREEN);
+            } else {
+                g.setColor(Color.RED);
+            }
+
+            g.fillRect(doorRectangle.x, doorRectangle.y, doorRectangle.width, doorRectangle.height);
         }
 
         g.setColor(Color.RED);

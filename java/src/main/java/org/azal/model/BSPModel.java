@@ -1,9 +1,11 @@
 package org.azal.model;
 
-import org.w3c.dom.css.Rect;
+import org.azal.entities.Door;
+import org.azal.entities.Room;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -18,14 +20,19 @@ public class BSPModel {
     private final Color roomColor = Color.BLUE;
     private final Color corridorColor = Color.RED;
     private final Color doorColor = Color.GREEN;
+    private Door keyDoor;
+    private Door playerDoor;
 
+    private HashMap<Room, Door> rooms;
     public BSPModel(){
         doors = new ArrayList<>();
+        rooms = new HashMap<>();
         partitions = new ArrayList<>();
         partitions.add(new Rectangle(60, 60, WIDTH - 120, HEIGHT - 120));
         splitPartitions(partitions, 5);
         createCorridors(partitions);
-        addDoorsToRooms(partitions);
+
+
 
         Rectangle bossRoom = partitions.get(new Random().nextInt(partitions.size() / 2));
         bossPosition = new Point(
@@ -39,6 +46,9 @@ public class BSPModel {
         spawnPosition = new Point(
                 spawnRoom.x + spawnRoom.width / 2,
                 spawnRoom.y + spawnRoom.height / 2);
+
+        addDoorsToRooms(partitions, keyRoom, spawnRoom);
+
     }
 
     public void generateNewBSP(){
@@ -48,7 +58,9 @@ public class BSPModel {
 
         splitPartitions(partitions, 5);
         createCorridors(partitions);
-        addDoorsToRooms(partitions);
+
+
+
         Rectangle bossRoom = partitions.get(new Random().nextInt(partitions.size() / 2));
         bossPosition = new Point(
                 bossRoom.x + bossRoom.width / 2,
@@ -70,6 +82,7 @@ public class BSPModel {
         spawnPosition = new Point(
                 spawnRoom.x + spawnRoom.width / 2,
                 spawnRoom.y + spawnRoom.height / 2);
+        addDoorsToRooms(partitions, keyRoom, spawnRoom);
     }
 
     private void splitPartitions(List<Rectangle> partitions, int maxRooms) {
@@ -123,36 +136,41 @@ public class BSPModel {
         }
     }
 
-    private void addDoorsToRooms(List<Rectangle> partitions) {
+    private void addDoorsToRooms(List<Rectangle> partitions, Rectangle keyRoom, Rectangle spawnRoom) {
         Random r = new Random();
-        doors = new ArrayList<>();
+        rooms = new HashMap<>();
         for (int i = 0; i < partitions.size() / 2; i++) {
-            Rectangle room = partitions.get(i);
+            Room room = new Room(partitions.get(i));
+
+            Rectangle doorRectangle;
             int wall = r.nextInt(4);
             if (wall == 0) {
-                doors.add(new Rectangle(
-                        room.x + room.width / 2 - DOOR_SIZE / 2,
-                        room.y + 5,
-                        DOOR_SIZE, DOOR_SIZE)
-                );
+                doorRectangle = new Rectangle(
+                        room.getRectangle().x + room.getRectangle().width / 2 - DOOR_SIZE / 2,
+                        room.getRectangle().y + 5,
+                        DOOR_SIZE, DOOR_SIZE);
             } else if (wall == 1) {
-                doors.add(new Rectangle(
-                        room.x + 5,
-                        room.y + room.height / 2 - DOOR_SIZE / 2,
-                        DOOR_SIZE, DOOR_SIZE)
-                );
+                doorRectangle = new Rectangle(
+                        room.getRectangle().x + 5,
+                        room.getRectangle().y + room.getRectangle().height / 2 - DOOR_SIZE / 2,
+                        DOOR_SIZE, DOOR_SIZE);
             } else if (wall == 2) {
-                doors.add(new Rectangle(
-                        room.x + room.width / 2 - DOOR_SIZE / 2,
-                        room.y + room.height - DOOR_SIZE - 5,
-                        DOOR_SIZE, DOOR_SIZE)
-                );
+                doorRectangle = new Rectangle(
+                        room.getRectangle().x + room.getRectangle().width / 2 - DOOR_SIZE / 2,
+                        room.getRectangle().y + room.getRectangle().height - DOOR_SIZE - 5,
+                        DOOR_SIZE, DOOR_SIZE);
             } else {
-                doors.add(new Rectangle(
-                        room.x + room.width - DOOR_SIZE - 5,
-                        room.y + room.height / 2 - DOOR_SIZE / 2,
-                        DOOR_SIZE, DOOR_SIZE)
-                );
+                doorRectangle = new Rectangle(
+                        room.getRectangle().x + room.getRectangle().width - DOOR_SIZE - 5,
+                        room.getRectangle().y + room.getRectangle().height / 2 - DOOR_SIZE / 2,
+                        DOOR_SIZE, DOOR_SIZE);
+            }
+            Door door = new Door(doorRectangle);
+            rooms.put(room, door);
+            if (room.getRectangle().equals(keyRoom)) {
+                keyDoor = door;
+            } else if (room.getRectangle().equals(spawnRoom)) {
+                playerDoor = door;
             }
         }
     }
@@ -170,8 +188,8 @@ public class BSPModel {
         return partitions;
     }
 
-    public List<Rectangle> getDoors() {
-        return doors;
+    public HashMap<Room, Door> getDoors() {
+        return rooms;
     }
 
     public Point getBossPosition() {
@@ -195,6 +213,14 @@ public class BSPModel {
 
     public Color getDoorColor() {
         return doorColor;
+    }
+
+    public Door getKeyDoor() {
+        return keyDoor;
+    }
+
+    public Door getPlayerDoor() {
+        return playerDoor;
     }
 
 
