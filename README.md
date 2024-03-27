@@ -238,8 +238,7 @@ Ce que je trouve regrettable, c'est qu'il est compliqué de motiver les autres �
 ### Luc :
 
 ### Ziyad :
-# Parti personel
-# Ziyad
+
 Ce qui a bien fonctionné pour moi a été la gestion de projet. Cette partie nous a permis de bien comprendre le besoin, qui était de ne pas viser la réalisation d'un jeu complet. Cependant, je crois que là où nous avons rencontré des difficultés était dans la répartition des tâches au sein de l'équipe, notamment dans la partie programmation du jeu. Le travail a été réalisé de manière inégale par les différents membres du groupe. Nous aurions dû nous concentrer sur les tâches que nous maîtrisions et ne pas perdre de temps sur des aspects que nous ne connaissions pas du tout. De plus, il aurait été utile de demander de l'aide lorsque nous étions bloqués, au lieu de laisser les problèmes s'accumuler. Personnellement, je pense avoir été utile à l'équipe dans la partie gestion de projet, en contribuant à la recherche d'informations et à la rédaction de certains documents requis. En revanche, je me considère moins utile dans la partie programmation. Un point positif au sein du groupe a été la réactivité des membres concernant le travail à réaliser en dehors du code.
 
 ### Anas :
