@@ -24,6 +24,7 @@
 
 
 <details>
+	<a name="readme-top"></a>
   <summary>Sommaire</summary>
   <ol>
     <li>
@@ -140,15 +141,13 @@ La génération par BSP (Binary Space Partitioning) est une méthode informatiqu
 
 De célèbres vieux jeux vidéos utilisent cette méthode : 
 
-<div align="center">
 <a href="https://en.wikipedia.org/wiki/Half-Life_(video_game)">
     <img src="images/halflife.jpg" alt="halflife" width="616" height="353">
   </a>
 <a href="https://en.wikipedia.org/wiki/Doom_(1993_video_game)">
     <img src="images/doom.jpeg" alt="doom" width="640" height="360">
   </a>
-</div
-	
+
 ### Notre utilisation
 Nous avons décidé d'utiliser l'algorithme BSP (Binary Space Partitioning) car il offre une méthode efficace pour générer des donjons complexes en divisant l'espace du donjon en sous-ensembles de manière récursive. Cette approche permet de créer des donjons variés et détaillés de manière cohérente, offrant une expérience de jeu riche et immersive pour les joueurs. En utilisant l'algorithme BSP, nous pouvons garantir la génération de donjons modulaires et dynamiques, ce qui est essentiel pour maintenir l'intérêt des joueurs sur la durée. Chaque exploration offre une nouvelle expérience, offrant ainsi une rejouabilité importante.
 
@@ -208,20 +207,6 @@ java/src/data/language/[Votre langue].xml # votre propre fichier respectant la m
   ```
 
 En intégrant ces fonctionnalités, nous visons à offrir une expérience de jeu inclusive et personnalisable, répondant aux besoins et aux préférences diversifiés de notre public cible.
-
-<!-- CONTRIBUTING -->
-## Contributing
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
