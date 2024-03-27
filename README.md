@@ -1,32 +1,3 @@
-<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
-<a name="readme-top"></a>
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Don't forget to give the project a star!
-*** Thanks again! Now go create something AMAZING! :D
--->
-
-
-
-<!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
-
-
-
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
@@ -34,96 +5,129 @@
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Best-README-Template</h3>
+  <h3 align="center">The Legend of The Duck</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
-    <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    Un générateur procédural de donjon <br/>
+    par<br/>
+    AZAL Corp
+     <br />
+    Luc VALETTE
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
+    Arthur LENNE
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
+    Ziyad QUARRI
+    ·
+    Anas AMIRI
   </p>
 </div>
 
 
-
-<!-- TABLE OF CONTENTS -->
 <details>
-  <summary>Table of Contents</summary>
+  <summary>Sommaire</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
+      <a href="#presentation">Présentation du projet</a>
       <ul>
-        <li><a href="#built-with">Built With</a></li>
+	      <li><a href="#attentes">Les fonctionnalités attendues</a></li>
+	      <li><a href="#contraintes">Les contraintes</a></li>
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Getting Started</a>
+      <a href="#generation-presentation">Génération procédural</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+        <li><a href="#prim">Prim</a></li>
+        <ul>
+	        <li><a href="#prim-presentation">Prim c'est quoi ?</a></li>
+	        <li><a href="#prim-code">Notre utilisation</a></li>
+		    <li><a href="#prim-feedback">Alors Prim c'est bien ?</a></li>
+        </ul>
+        <li><a href="#bsp">BSP</a></li>
+        <ul>
+	        <li><a href="#bsp-presentation">BSP c'est quoi ?</a></li>
+	        <li><a href="#bsp-code">Notre utilisation</a></li>
+		    <li><a href="#bsp-feedback">Alors BSP c'est bien ?</a></li>
+        </ul>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#outils">Outils de conception</a></li>
+    <li><a href="#bonus">Fonctionnalités bonus ajoutés</a></li>
     <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
+    <li><a href="#bilan">Conclusion</a></li>
+    <li><a href="#feedback-projet">Feedback du projet</a></li>
   </ol>
 </details>
 
 
 
-<!-- ABOUT THE PROJECT -->
-## About The Project
+# Présentation du projet
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
+Le but de ce projet était de concevoir de A à Z un générateur de donjon de façon PROCEDURAL.
 
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should implement DRY principles to the rest of your life :smile:
+Aujourd'hui, nous pouvons constater une pénurie de l'utilisation de la génération procédurale dans le monde du jeu vidéo, une approche innovante et prometteuse pour la création de mondes virtuels. La génération procédurale, en tant que méthode algorithmique pour produire des contenus de manière dynamique, offre des avantages significatifs en termes de diversité, de rejeu et d'évolutivité des environnements de jeu. Cependant, malgré son potentiel, de nombreux projets n'exploitent pas pleinement cette technologie, se limitant souvent à des aspects spécifiques du jeu.
 
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
+Nous avons donc conçu ce jeu manière très simplifié d'un point de vue gameplay mais très enrichissant d'un point de vue génération procédurale.
 
-Use the `BLANK_README.md` to get started.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+En effet, nous avons décidé d'utiliser deux types de génération différents : Prim et BSP ,afin de pouvoir les comparer et offrir une meilleur expérience aux joueurs.
 
 
+<p align="right">(<a href="#readme-top">Retour au sommaire</a>)</p>
 
-### Built With
+## Les fonctionnalités attendues
+Après avoir pris contact avec notre client M.Roussille, nous avons pu dresser une liste des fonctionnalités attendues par ce dernier dans ce projet : 
+-   Génération aléatoire de la carte du donjon avec des salles, des couloirs, et des zones secrètes.
+-  Création d’énigmes basées sur le principe “Lock and Key” pour accéder à certaines parties du donjon.
+-  Gestion des objets (clés, trésors, armes, etc.) dans le donjon.  
+-  Création d’une interface utilisateur graphique pour aﬀicher la carte du donjon et permettre à l’utilisateur de se déplacer et d’interagir avec les éléments du jeu.
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+## Les contraintes
+La seule contrainte à laquelle nous avons été soumis est Java. En effet, le client voulait que le projet soit entièrement développé avec Java. Toutefois, nous étions libre sur l'utilisation d'utilitaires/ frameworks.
 
-* [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
+Cet contrainte d'utilisation ne nous a pas gêné même si d'autres langages auraient plus adaptés afin de créer un jeu vidéo tel que C#.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+## Outils de conception
+
+Nous allons vous présenter les différents outils de conception que nous avons décidé d'utiliser afin de réaliser ce projet.
+
+* [![Java][Java]][Java-url]
+* [![Gradle]][Gradle-url]
+* Checksyle
+* Github Project
+* XML
+
+<p align="right">(<a href="#readme-top">Retour au sommaire</a>)</p>
 
 
 
-<!-- GETTING STARTED -->
-## Getting Started
+# Génération procédural
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+Jusqu'à présent nous n'avons pas expliquer "Qu'est-ce que la génération procédural ?"
 
-### Prerequisites
+La génération procédurale est une méthode informatique pour créer du contenu de manière automatique en utilisant des règles et des algorithmes plutôt que de le concevoir manuellement. Cela permet de générer des mondes, des niveaux de jeux vidéo, des paysages, des textures, des musiques, etc., de manière dynamique et souvent infinie, offrant ainsi une variété et une re-jouabilité uniques.
+
+Sur ce projet, nous allons nous focaliser sur son utilisation dans le monde du jeu vidéo. En effet, comme évoqué plutôt la génération procédurale est rare dans ce domaine mais elle existe :
+<div align="center">
+<a href="https://fr.wikipedia.org/wiki/Minecraft">
+    <img src="images/minecraft.png" alt="minecraft" width="80" height="80">
+  </a>
+<a href="https://fr.wikipedia.org/wiki/Lethal_Company">
+    <img src="images/lethal.jpg" alt="lethal" width="80" height="80">
+  </a>
+  <a href="https://fr.wikipedia.org/wiki/Spore_(jeu_vidéo)">
+    <img src="images/spore.jpg" alt="spore" width="80" height="80">
+  </a>
+</div
+
+## Prim
+
+### Prim c'est quoi ?
+L'algorithme de Prim est une technique utilisée en génération procédurale pour créer des arbres de recouvrement minimum dans un graphe. En termes simples, cela signifie qu'il trouve un ensemble d'arêtes qui connectent tous les nœuds du graphe tout en minimisant la somme de leurs poids. En d'autres termes, il aide à créer un réseau de connexion efficace entre différentes parties d'un monde généré de manière procédurale, comme des routes dans un jeu vidéo ou des chemins dans une carte.
+
+### Notre utilisation
+
+### Alors Prim c'est bien ?
 
 This is an example of how to list things you need to use the software and how to install them.
 * npm
@@ -131,8 +135,12 @@ This is an example of how to list things you need to use the software and how to
   npm install npm@latest -g
   ```
 
-### Installation
+## BSP
+### BSP c'est quoi ?
 
+### Notre utilisation
+
+### Alors BSP c'est bien ?
 _Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
 1. Get a free API Key at [https://example.com](https://example.com)
@@ -252,8 +260,14 @@ Use this space to list resources you find helpful and would like to give credit 
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/othneildrew
 [product-screenshot]: images/screenshot.png
-[Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
-[Next-url]: https://nextjs.org/
+
+
+
+[Java]: https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white
+[Gradle]: https://img.shields.io/badge/Gradle-02303A?style=for-the-badge&logo=Gradle&logoColor=white
+[Gradle-url]: https://gradle.org
+[Java-url]: https://www.java.com/fr/
+
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
 [Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
