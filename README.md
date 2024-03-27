@@ -24,37 +24,36 @@
 
 
 <details>
-	<a name="readme-top"></a>
   <summary>Sommaire</summary>
   <ol>
     <li>
-      <a href="#presentation">Présentation du projet</a>
+      Présentation du projet
       <ul>
-	      <li><a href="#attentes">Les fonctionnalités attendues</a></li>
-	      <li><a href="#contraintes">Les contraintes</a></li>
+	      <li>Les fonctionnalités attendues</li>
+	      <li>Les contraintes</li>
       </ul>
     </li>
     <li>
-      <a href="#generation-presentation">Génération procédural</a>
+      Génération procédural
       <ul>
-        <li><a href="#prim">Prim</a></li>
+        <li>Prim</li>
         <ul>
-	        <li><a href="#prim-presentation">Prim c'est quoi ?</a></li>
-	        <li><a href="#prim-code">Notre utilisation</a></li>
-		    <li><a href="#prim-feedback">Alors Prim c'est bien ?</a></li>
+	        <li>Prim c'est quoi ?</li>
+	        <li>Notre utilisation</li>
+		<li>Alors Prim c'est bien ?</li>
         </ul>
-        <li><a href="#bsp">BSP</a></li>
+        <li>BSP</li>
         <ul>
-	        <li><a href="#bsp-presentation">BSP c'est quoi ?</a></li>
-	        <li><a href="#bsp-code">Notre utilisation</a></li>
-		    <li><a href="#bsp-feedback">Alors BSP c'est bien ?</a></li>
+	        <li>BSP c'est quoi ?</li>
+	        <li>Notre utilisation</li>
+		    <li>Alors BSP c'est bien ?</li>
         </ul>
       </ul>
     </li>
-    <li><a href="#outils">Outils de conception</a></li>
-    <li><a href="#bonus">Fonctionnalités bonus ajoutés</a></li>
-    <li><a href="#bilan">Conclusion</a></li>
-    <li><a href="#feedback-projet">Feedback du projet</a></li>
+    <li>Outils de conception</li>
+    <li>Fonctionnalités bonus ajoutés</li>
+    <li>Conclusion</li>
+    <li>Feedback du projet</li>
   </ol>
 </details>
 
@@ -71,8 +70,6 @@ Nous avons donc conçu ce jeu manière très simplifié d'un point de vue gamepl
 En effet, nous avons décidé d'utiliser deux types de génération différents : Prim et BSP ,afin de pouvoir les comparer et offrir une meilleur expérience aux joueurs.
 
 
-<p align="right">(<a href="#readme-top">Retour au sommaire</a>)</p>
-
 ## Les fonctionnalités attendues
 Après avoir pris contact avec notre client M.Roussille, nous avons pu dresser une liste des fonctionnalités attendues par ce dernier dans ce projet : 
 -   Génération aléatoire de la carte du donjon avec des salles, des couloirs, et des zones secrètes.
@@ -84,8 +81,6 @@ Après avoir pris contact avec notre client M.Roussille, nous avons pu dresser u
 La seule contrainte à laquelle nous avons été soumis est Java. En effet, le client voulait que le projet soit entièrement développé avec Java. Toutefois, nous étions libre sur l'utilisation d'utilitaires/ frameworks.
 
 Cet contrainte d'utilisation ne nous a pas gêné même si d'autres langages auraient plus adaptés afin de créer un jeu vidéo tel que C#.
-
-<p align="right">(<a href="#readme-top">Retour au sommaire</a>)</p>
 
 
 # Génération procédural
@@ -162,8 +157,6 @@ Cependant, l'utilisation de BSP peut également présenter des inconvénients, n
 
 En résumé, bien que BSP offre des avantages significatifs, il est important d'évaluer attentivement ses inconvénients potentiels et de considérer les besoins spécifiques du projet pour déterminer si c'est la meilleure approche pour notre jeu de donjon procédural.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 # Outils de conception
 
@@ -184,7 +177,6 @@ Pour réaliser ce projet, nous avons utiliser différents outils/langages :
 * XML<br>
   Nous a permis de stocker certains paramètres du jeu<br>
 
-<p align="right">(<a href="#readme-top">Retour au sommaire</a>)</p>
 
 #Fonctionnalités bonus ajoutés
 Dans le cadre de notre projet, nous avons pris l'initiative d'ajouter trois fonctionnalités visant à rendre l'expérience plus accessible et adaptable aux utilisateurs :
@@ -208,7 +200,6 @@ java/src/data/language/[Votre langue].xml # votre propre fichier respectant la m
 
 En intégrant ces fonctionnalités, nous visons à offrir une expérience de jeu inclusive et personnalisable, répondant aux besoins et aux préférences diversifiés de notre public cible.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 # Bilan
@@ -221,7 +212,6 @@ L'utilisation d'outils de gestion de projet tels que GitHub Project et les norme
 
 En termes de contraintes, l'exigence d'utiliser exclusivement Java comme langage de programmation a été respectée, bien que d'autres langages comme C# auraient pu être plus adaptés pour ce type de projet de jeu vidéo.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 # Feedback
 
@@ -238,12 +228,6 @@ Dans l'ensemble, le projet a été une réussite, mais il reste des domaines où
 - Une optimisation des performances pourrait être envisagée pour garantir une expérience de jeu fluide sur différents types de plates-formes.
 
 En conclusion, le projet "The Legend of The Duck" a été une expérience enrichissante qui nous a permis d'explorer les techniques de génération procédurale et de créer un jeu de donjon captivant. Avec quelques ajustements et améliorations, nous sommes convaincus que le jeu pourrait offrir une expérience encore plus immersive et engageante pour les joueurs.
-
-
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- MARKDOWN LINKS & IMAGES -->
 [Java]: https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white
