@@ -1,47 +1,79 @@
 package org.azal.model;
 
-import org.azal.controller.PrimController;
+
 import org.azal.entities.*;
-import org.azal.view.PrimView;
-import org.w3c.dom.css.Rect;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Point;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.TexturePaint;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Random;
+import java.util.Set;
 import java.util.List;
-
+/**
+ * The PrimModel class represents the model component in the Model-View-Controller (MVC) pattern for managing
+ * the data and business logic of the Prim algorithm. It is responsible for generating a random maze using the
+ * Prim algorithm and visualizing the maze using a graphical user interface.
+ */
 public class PrimModel {
-    private final int WidthBuffer = 80;
-    private final int HeightBuffer = 80;
-    private static final int NUM_POINTS = 8;
-    private static final int ROOM_MAX_SIZE = 30;
-    private static final int ROOM_MIN_SIZE = 20;
-    private static final int ROOM_MIN_DISTANCE = 2;
-    public final BufferedImage image = new BufferedImage(WidthBuffer, HeightBuffer, BufferedImage.TYPE_INT_RGB);
+    /** The width buffer for the image. */
+    private final int widthBuffer = 80;
+    /** The height buffer for the image. */
+    private final int heightBuffer = 80;
+    /** The number of points in the maze. */
+    private static final int numPoints = 8;
+    /** The maximum size of a room. */
+    private static final int roomMaxSize = 30;
+    /** The minimum size of a room. */
+    private static final int roomMinSize = 20;
+    /** The minimum distance between rooms. */
+    private static final int roomMinDistance = 2;
+    /** The image used for rendering the visualization. */
+    private final BufferedImage image = new BufferedImage(widthBuffer, heightBuffer, BufferedImage.TYPE_INT_RGB);
+    /** The texture paint for the stone image. */
     private TexturePaint stoneTexture;
+    /** The texture paint for the dirt image. */
     private TexturePaint dirtTexture;
+    /** The list of points in the maze. */
     private final List<Point> points = new ArrayList<>();
+    /** The list of points in the tree. */
     private final List<Point> tree = new ArrayList<>();
-
+    /** The list of rooms in the maze. */
     private final List<Room> rooms = new ArrayList<>();
+    /** The map of rooms to objects in the maze. */
     private HashMap<Room, Object> roomObjects = new HashMap<>();
-
+/** The map of corridors to rooms in the maze. */
     private HashMap<Corridor, List<Room>> corridorObjects = new HashMap<>();
-
+    /** The position of the boss in the maze. */
     private Point bossPosition;
+    /** The position of the key in the maze. */
     private Point keyPosition;
+    /** The position of the player spawn in the maze. */
     private Point spawnPosition;
 
+    /** The boolean value indicating whether the player is getting the key. */
     private boolean isGettingKey = false;
+    /** The boolean value indicating whether the player is fighting the boss. */
     private boolean isFight = false;
+    /** The boolean value indicating whether the boss is dead. */
     private boolean bossDead = false;
+    /** The boolean value indicating whether the level is being built. */
     public boolean isBuilding = true;
+    /** The color of the closed corridor. */
     private final Color corridorClosed = Color.RED;
 
+    /**
+     * Constructs a new PrimModel instance with the specified parameters.
+     */
     public PrimModel() {
         try {
             int x = 0;
@@ -59,7 +91,11 @@ public class PrimModel {
         keyPosition = new Point();
         spawnPosition = new Point();
     }
-
+    /**
+     * Draws the visualization of the Prim algorithm on the specified graphics object.
+     *
+     * @param graphics2D The Graphics2D object used for rendering the visualization.
+     */
     public void draw(Graphics2D graphics2D) {
         int x = 0;
         int y = 0;
@@ -83,8 +119,8 @@ public class PrimModel {
                 graphics2D.draw(rectangle);
                 graphics2D.setPaint(dirtTexture);
                 graphics2D.fillRect(rectangle.x + 1, rectangle.y + 1
-                        , rectangle.width - ROOM_MIN_DISTANCE / 2
-                        , rectangle.height - ROOM_MIN_DISTANCE / 2);
+                        , rectangle.width - roomMinDistance / 2
+                        , rectangle.height - roomMinDistance / 2);
             }
 
             List<Player> players = roomObjects.values().stream()
@@ -137,14 +173,14 @@ public class PrimModel {
             graphics2D.setColor(Color.WHITE);
 
             outer:
-            for (int i = 0; i < NUM_POINTS; i++) {
+            for (int i = 0; i < numPoints; i++) {
                 x = (int) (10 + (image.getWidth() - 20) * Math.random());
                 y = (int) (10 + (image.getHeight() - 20) * Math.random());
                 Point point = new Point(x, y);
 
-                int width = (int) (ROOM_MIN_SIZE + ((ROOM_MAX_SIZE - ROOM_MIN_SIZE) * Math.random()));
+                int width = (int) (roomMinSize + ((roomMaxSize - roomMinSize) * Math.random()));
 
-                int height = (int) (ROOM_MIN_SIZE + ((ROOM_MAX_SIZE - ROOM_MIN_SIZE) * Math.random()));
+                int height = (int) (roomMinSize + ((roomMaxSize - roomMinSize) * Math.random()));
 
                 Room roomUn = new Room(new Rectangle(point.x - width / 2, point.y - height / 2, width, height));
                 for (Room roomDeux : rooms) {
@@ -155,10 +191,10 @@ public class PrimModel {
 
                 // ensure each room doesn't touch others
                 Rectangle rectangleUn = roomUn.getRectangle();
-                rectangleUn.x += ROOM_MIN_DISTANCE;
-                rectangleUn.y += ROOM_MIN_DISTANCE;
-                rectangleUn.width -= 2 * ROOM_MIN_DISTANCE;
-                rectangleUn.height -= 2 * ROOM_MIN_DISTANCE;
+                rectangleUn.x += roomMinDistance;
+                rectangleUn.y += roomMinDistance;
+                rectangleUn.width -= 2 * roomMinDistance;
+                rectangleUn.height -= 2 * roomMinDistance;
                 roomUn.setRectangle(rectangleUn);
 
                 // ensure path doesn't collide with one of wall corners
@@ -187,8 +223,8 @@ public class PrimModel {
                 graphics2D.draw(rectangleUn);
                 graphics2D.setPaint(dirtTexture);
                 graphics2D.fillRect(rectangleUn.x + 1, rectangleUn.y + 1
-                        , rectangleUn.width - ROOM_MIN_DISTANCE / 2
-                        , rectangleUn.height - ROOM_MIN_DISTANCE / 2);
+                        , rectangleUn.width - roomMinDistance / 2
+                        , rectangleUn.height - roomMinDistance / 2);
                 points.add(point);
             }
 
@@ -353,23 +389,54 @@ public class PrimModel {
             }
         }
     }
-    public void getKey(boolean isGettingKey) {
-        this.isGettingKey = isGettingKey;
-    }
-
-    public void fight(boolean isFight) {
-        this.isFight = isFight;
-    }
-
+    /**
+     * Gets the boolean value indicating whether the level is being built.
+     *
+     * @param building The boolean value indicating whether the level is being built.
+     */
     public void setBuilding(boolean building) {
         isBuilding = building;
     }
-
+    /**
+     * Gets the boolean value indicating whether the boss is dead.
+     *
+     * @return The boolean value indicating whether the boss is dead.
+     */
     public boolean isBossDead() {
         return bossDead;
     }
 
+    /**
+     * Sets the boolean value indicating whether the boss is dead.
+     *
+     * @param bossDead The boolean value indicating whether the boss is dead.
+     */
     public void setBossDead(boolean bossDead) {
         this.bossDead = bossDead;
+    }
+    /**
+     * Sets the boolean value indicating whether the player is fighting the boss.
+     *
+     * @param fight The boolean value indicating whether the player is fighting the boss.
+     */
+    public void setFighting(boolean fight) {
+        isFight = fight;
+    }
+
+    /**
+     * Gets the image of the Prim algorithm visualization.
+     *
+     * @return The image of the Prim algorithm visualization.
+     */
+    public BufferedImage getImage() {
+        return image;
+    }
+
+    /**
+     * Sets the boolean value indicating whether the player is getting the key.
+     * @param isGettingKey The boolean value indicating whether the player is getting the key.
+     */
+    public void setGettingKey(boolean isGettingKey) {
+        this.isGettingKey = isGettingKey;
     }
 }
