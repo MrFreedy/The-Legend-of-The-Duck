@@ -100,7 +100,7 @@ Sur ce projet, nous allons nous focaliser sur son utilisation dans le monde du j
   <a href="https://fr.wikipedia.org/wiki/Spore_(jeu_vidéo)">
     <img src="images/spore.jpg" alt="spore" width="500" height="750">
   </a>
-</div
+</div>
 
 ## Prim
 
@@ -236,6 +236,8 @@ J'ai trouvé ce projet très enrichissant car il permet d'aborder un thème dont
 Ce que je trouve regrettable, c'est qu'il est compliqué de motiver les autres à travailler. Il faut les pousser alors que ce n'est pas rôle car je ne suis pas chef de projet.
 
 ### Luc :
+
+J'ai beaucoup apprécié l'ensemble du projet, que ce soit au niveau de la gestion de projet ou bien des phases de réflexion et de développement. Les bons côtés ont été la découverte du thème abordé ainsi que la gestion qui se rapprochait de la méthode agile. Ce qui a moins marché est le fait que je n'ai pas su gérer convenablement, en tant que chef de projet, le suivi du projet et le partage du travail. Je pense que ce projet m'aura permis d'en apprendre plus sur la gestion de projet et sur les façons de faire afin d'amener le projet à sa réalisation.
 
 ### Ziyad :
 
