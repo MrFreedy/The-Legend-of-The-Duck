@@ -229,6 +229,17 @@ Dans l'ensemble, le projet a été une réussite, mais il reste des domaines où
 
 En conclusion, le projet "The Legend of The Duck" a été une expérience enrichissante qui nous a permis d'explorer les techniques de génération procédurale et de créer un jeu de donjon captivant. Avec quelques ajustements et améliorations, nous sommes convaincus que le jeu pourrait offrir une expérience encore plus immersive et engageante pour les joueurs.
 
+## Retours personnel :
+### Arthur :
+
+J'ai trouvé ce projet très enrichissant car il permet d'aborder un thème dont tout le monde entend parler mais dont personne ne sait comment il fonctionne. Pour moi, ce projet représente m'a permis de mettre en pratique ce que j'ai appris en entreprise dans la gestion des répartitions de tâches, du review de code, ....
+Ce que je trouve regrettable, c'est qu'il est compliqué de motiver les autres à travailler. Il faut les pousser alors que ce n'est pas rôle car je ne suis pas chef de projet.
+
+### Luc :
+
+### Ziyad :
+
+### Anas :
 <!-- MARKDOWN LINKS & IMAGES -->
 [Java]: https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white
 [Gradle]: https://img.shields.io/badge/Gradle-02303A?style=for-the-badge&logo=Gradle&logoColor=white
